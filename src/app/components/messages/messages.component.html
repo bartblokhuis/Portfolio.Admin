@@ -41,24 +41,24 @@
                   <tbody>
                     <tr *ngFor="let message of messages;">
                       <td> {{ message.firstName }} {{ message.lastName }} </td>
-                      <td> {{ message.emailAddress }} </td>
-                      <td [innerHtml]="message.message"></td>
+                      <td> {{ message.email }} </td>
+                      <td [innerHtml]="message.messageContent"></td>
                       <td> 
-                        <ng-template [ngIf]="message.status == 0">
+                        <ng-template [ngIf]="message.messageStatus == 0">
                           <span class="badge bg-danger">Unread</span>
                         </ng-template>
-                        <ng-template [ngIf]="message.status == 1">
+                        <ng-template [ngIf]="message.messageStatus == 1">
                           <span class="badge bg-warning">Read</span>
                         </ng-template>
-                        <ng-template [ngIf]="message.status == 2">
+                        <ng-template [ngIf]="message.messageStatus == 2">
                           <span class="badge bg-primary">Awaiting response</span>
                         </ng-template>
-                        <ng-template [ngIf]="message.status == 3">
+                        <ng-template [ngIf]="message.messageStatus == 3">
                           <span class="badge bg-success">Closed</span>
                         </ng-template>
                       </td>
-                      <td> {{ message.receivedDate }} </td>
-                      <td> {{ message.lastUpdatedDate }} </td>
+                      <td> {{ message.createdAtUTC }} </td>
+                      <td> {{ message.updatedAtUtc }} </td>
                       <td> 
                         <div class="actions">
                           <div (click)="editMessage(message)" class="action">

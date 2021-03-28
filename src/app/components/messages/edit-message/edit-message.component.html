@@ -31,26 +31,26 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <label>Emailaddress</label>
-                    <input class="form-control" type="text" [value]="message.emailAddress" readonly="readonly" />
+                    <input class="form-control" type="text" [value]="message.email" readonly="readonly" />
                 </div>
             </div>
             <div class="col-sm-12">
                 <div class="form-group">
                     <label>Message</label>
-                    <textarea class="form-control" type="text" [value]="message.message" readonly="readonly"></textarea>
+                    <textarea class="form-control" type="text" [value]="message.messageContent" readonly="readonly"></textarea>
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="form-group">
                     <label>Received date</label>
-                    <input class="form-control" type="text" [value]="message.receivedDate" readonly="readonly" />
+                    <input class="form-control" type="text" [value]="message.createdAtUTC" readonly="readonly" />
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="form-group">
                     <label>Last updated date</label>
-                    <input *ngIf="message.lastUpdatedDate" class="form-control" type="text" [value]="message.lastUpdatedDate" readonly="readonly" />
-                    <input *ngIf="!message.lastUpdatedDate" class="form-control" type="text" readonly="readonly" />
+                    <input *ngIf="message.updatedAtUtc" class="form-control" type="text" [value]="message.updatedAtUtc" readonly="readonly" />
+                    <input *ngIf="!message.updatedAtUtc" class="form-control" type="text" readonly="readonly" />
                 </div>
             </div>
         </div>

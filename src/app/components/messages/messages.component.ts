@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Message, MessageStatus } from '../../data/Message';
 import { DeleteMessageComponent } from './delete-message/delete-message.component';
 import { EditMessageComponent } from './edit-message/edit-message.component';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -12,21 +13,14 @@ import { EditMessageComponent } from './edit-message/edit-message.component';
 })
 export class MessagesComponent implements OnInit {
 
-  messages: Message[] = [
-    { firstName: "Bart", lastName: "Blokhuis", emailAddress: "info@bartblokhuis.com", message: "Hello world!",
-    receivedDate: "31/0/2020", status: MessageStatus.Unread, id: 0 },
+  messages: Message[] = []
 
-    { firstName: "Bart", lastName: "Blokhuis", emailAddress: "info@bartblokhuis.com", message: "Hello world!",
-    receivedDate: "31/0/2020", status: MessageStatus.Closed, id: 0 },
-
-    { firstName: "Bart", lastName: "Blokhuis", emailAddress: "info@bartblokhuis.com", message: "Hello world!",
-    receivedDate: "31/0/2020", status: MessageStatus.Read, id: 0 },
-
-    { firstName: "Bart", lastName: "Blokhuis", emailAddress: "info@bartblokhuis.com", message: "Hello world!",
-    receivedDate: "31/0/2020", status: MessageStatus.WaitingResponse, id: 0 },
-  ]
-
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal, http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+    http.get<Message[]>(baseUrl + 'Messages').subscribe(result => {
+      this.messages = result;
+      console.log(result);
+    }, error => console.error(error));
+   }
 
   ngOnInit(): void {
   }

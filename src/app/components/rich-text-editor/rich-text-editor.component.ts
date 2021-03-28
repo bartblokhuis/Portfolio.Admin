@@ -15,7 +15,7 @@ export class RichTextEditorComponent {
 
 
     console.log(this.control);
-    console.log(this.content)
+    console.log(this.content);
 
     this.control = this.control ?? new FormControl()
     if(!this.content){

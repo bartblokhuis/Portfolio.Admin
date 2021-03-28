@@ -10,11 +10,11 @@ export enum MessageStatus {
 export interface Message extends BaseEntity {
     firstName: string,
     lastName: string,
-    emailAddress: string,
-    message: string,
-    receivedDate: string,
-    lastUpdatedDate?: string,
-    status: MessageStatus
+    email: string,
+    messageContent: string,
+    createdAtUTC: string,
+    updatedAtUtc?: string,
+    messageStatus: MessageStatus
 }
 
 export const MessageStatusToLabelMapping = {
