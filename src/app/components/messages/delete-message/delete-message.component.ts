@@ -11,7 +11,6 @@ export class DeleteMessageComponent implements OnInit {
 
   @Input() message: Message;
   @Input() modalRef: NgbModalRef;
-  @Input() callBack: Function;
 
   private baseUrl: string;
   private http: HttpClient;

@@ -29,24 +29,24 @@ export class MessagesComponent implements OnInit {
   editMessage(message: Message) {
     const modalRef = this.modalService.open(EditMessageComponent, { size: 'lg' })
     modalRef.componentInstance.message = message;
+    modalRef.componentInstance.modalRef = modalRef;
+    modalRef.result.then((result => {
+      this.LoadMessages();
+    }))
   }
 
   deleteMessage(message: Message){
     const modalRef = this.modalService.open(DeleteMessageComponent, { size: 'lg' });
     modalRef.componentInstance.message = message;
+    modalRef.componentInstance.setMessage(message);
     modalRef.componentInstance.modalRef = modalRef;
 
     modalRef.result.then((result => {
-      console.log(`Closed with: ${result}`);
       this.LoadMessages();
     }))
     .catch((error) => {
       console.log(`ran into error: ${error}`)
     });
-  }
-
-  onDelete(){
-    
   }
 
   LoadMessages(){
