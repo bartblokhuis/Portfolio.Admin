@@ -1,3 +1,5 @@
+import { SkillGroup } from './SkillGroup';
+
 export enum SkillType {
     FrontEnd,
     BackEnd,
@@ -6,8 +8,10 @@ export enum SkillType {
    
 export interface Skill {
     name: string,
-    icon: string,
-    type: SkillType,
-    displayOrder: number
+    iconPath: string,
+    displayNumber: number,
+    skillGroupId: number,
+    skillGroup: SkillGroup,
+    id: number
 }
    

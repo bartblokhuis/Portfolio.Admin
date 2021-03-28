@@ -18,58 +18,12 @@
       <div class="container-fluid">
         <!-- Content starts here -->
         <div class="row">
-          <div class="col-lg-4 col-md-6 col-sm-12">
+          
+          <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let skillGroup of skillGroups">
             <div class="card">
-
               <div class="card-header">
-                <h3 class="card-title">Front end skills</h3>
+                <h3 class="card-title">{{skillGroup.title}}</h3>
               </div>
-
-              <div class="card-body table-responsive p-0" style="height: 300px;">
-                <table class="table table-head-fixed text-nowrap">
-                  <thead>
-                    <tr>
-                      <th>Name</th>
-                      <th>Icon</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody cdkDropList (cdkDropListDropped)="dropFrontEndSkills($event)">
-                    <tr *ngFor="let skill of frontEndSkills;" cdkDrag>
-                      <td> {{ skill.name }} </td>
-                      <td> {{ skill.icon }} </td>
-                      <td> 
-                        <div class="actions">
-                          <div class="action" cdkDragHandle>
-                            <i class="fas fa-bars"></i>
-                          </div>
-                          <div (click)="editSkill(skill)" class="action">
-                            <i class="fas fa-pen-alt"></i>
-                          </div>
-                          <div (click)="removeSkill(skill)" class="action">
-                            <i class="fas fa-trash-alt danger"></i>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <div class="card-footer">
-                <button type="submit" class="btn btn-primary" (click)="addFrontEndSkill()">Add skill</button>
-              </div>
-
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 col-sm-12">
-            <div class="card">
-
-              <div class="card-header">
-                <h3 class="card-title">Back end skills</h3>
-              </div>
-
 
               <div class="card-body table-responsive p-0" style="height: 300px;">
                 <table class="table table-head-fixed text-nowrap">
@@ -81,7 +35,7 @@
                     </tr>
                   </thead>
                   <tbody cdkDropList (cdkDropListDropped)="dropBackEndSkills($event)">
-                    <tr *ngFor="let skill of backEndSkills;" cdkDrag>
+                    <tr *ngFor="let skill of skillGroup.skills;" cdkDrag>
                       <td> {{ skill.name }} </td>
                       <td> {{ skill.icon }} </td>
                       <td> 
@@ -105,52 +59,6 @@
               <div class="card-footer">
                 <button type="submit" class="btn btn-primary"  (click)="addBackEndSkill()">Add skill</button>
               </div>
-
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 col-sm-12">
-            <div class="card">
-
-              <div class="card-header">
-                <h3 class="card-title">Other skills</h3>
-              </div>
-
-              <div class="card-body table-responsive p-0" style="height: 300px;">
-                <table class="table table-head-fixed text-nowrap">
-                  <thead>
-                    <tr>
-                      <th>Name</th>
-                      <th>Icon</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody  cdkDropList (cdkDropListDropped)="dropOtherSkills($event)">
-                    <tr *ngFor="let skill of otherSkills;" cdkDrag>
-                      <td> {{ skill.name }} </td>
-                      <td> {{ skill.icon }} </td>
-                      <td> 
-                        <div class="actions">
-                          <div class="action" cdkDragHandle>
-                            <i class="fas fa-bars"></i>
-                          </div>
-                          <div (click)="editSkill(skill)" class="action">
-                            <i class="fas fa-pen-alt"></i>
-                          </div>
-                          <div (click)="removeSkill(skill)" class="action">
-                            <i class="fas fa-trash-alt danger"></i>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <div class="card-footer">
-                <button type="submit" class="btn btn-primary" (click)="addOtherSkill()">Add skill</button>
-              </div>
-
             </div>
           </div>
         </div>

@@ -1,10 +1,13 @@
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Skill, SkillType} from '../../data/Skill';
 import { CreateSkillComponent } from './create-skill/create-skill.component';
 import { DeleteSkillComponent } from './delete-skill/delete-skill.component';
 import { EditSkillComponent } from './edit-skill/edit-skill.component';
+import { HttpClient } from '@angular/common/http';
+import { SkillGroup } from 'src/app/data/SkillGroup';
+
 
 
 @Component({
@@ -14,20 +17,19 @@ import { EditSkillComponent } from './edit-skill/edit-skill.component';
 })
 export class SkillsComponent implements OnInit {
 
-  skills: Skill[] = [ 
-    { name: "Angular", icon: "test", displayOrder: 1, type: SkillType.FrontEnd },
-    { name: "CSS", icon: "test", displayOrder: 0, type: SkillType.FrontEnd },
-    { name: "C#", icon: "test", displayOrder: 1, type: SkillType.BackEnd },
-    { name: "Nopcommerce", icon: "test", displayOrder: 1, type: SkillType.BackEnd },
-    { name: "Nopcommerce", icon: "test", displayOrder: 1, type: SkillType.Other },
-    { name: "Nopcommerce", icon: "test", displayOrder: 1, type: SkillType.Other },
-].sort((a,b) => a.displayOrder - b.displayOrder)
+  skillGroups: SkillGroup[];
+  skills: Skill[] = []
 
-  frontEndSkills: Skill[] = this.skills.filter(skill => skill.type === SkillType.FrontEnd);
-  backEndSkills: Skill[] = this.skills.filter(skill => skill.type === SkillType.BackEnd);
-  otherSkills: Skill[] = this.skills.filter(skill => skill.type === SkillType.Other);
+  frontEndSkills: Skill[] = this.skills;
+  backEndSkills: Skill[] = this.skills;
+  otherSkills: Skill[] = this.skills;
   
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal, http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+    http.get<SkillGroup[]>(baseUrl + 'SkillGroup').subscribe(result => {
+      this.skillGroups = result;
+      console.log(result);
+    }, error => console.error(error));
+   }
 
   ngOnInit(): void {
   }
@@ -86,19 +88,19 @@ export class SkillsComponent implements OnInit {
       var skill = skills[i];
 
       if(i === event.previousIndex){
-        skill.displayOrder = event.currentIndex;
+        skill.displayNumber = event.currentIndex;
       }
 
       else if(event.previousIndex > event.currentIndex) {
-        skill.displayOrder++;
+        skill.displayNumber++;
       }
 
       else{
-        skill.displayOrder--;
+        skill.displayNumber--;
       }
     }
     
-    skills.sort((a,b) => a.displayOrder - b.displayOrder);
+    skills.sort((a,b) => a.displayNumber - b.displayNumber);
 
     return skills;
   }
