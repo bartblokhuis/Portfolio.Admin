@@ -12,18 +12,19 @@ export class AboutMeComponent implements OnInit {
 
   public abouteMe: AboutMe = {title: "", content: ""};
   private http: HttpClient;
-
-  editor = new FormControl('test')
+  private baseUrl : string
 
   aboutMeForm = new FormGroup({
     title: new FormControl(''),
     content: new FormControl('')
   });
 
-  constructor(http: HttpClient) {
+  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
 
     this.http = http;
-    http.get<AboutMe>("https://localhost:44301/" + 'AboutMe').subscribe(result => {
+    this.baseUrl = baseUrl;
+
+    http.get<AboutMe>(baseUrl + 'AboutMe').subscribe(result => {
       this.aboutMeForm.controls.title.setValue(result.title);
       this.aboutMeForm.controls.content.setValue(result.content);
 
@@ -34,11 +35,7 @@ export class AboutMeComponent implements OnInit {
   }
 
   saveAboutMe(): void {
-    console.log(this.editor.value);
-  }
-
-  getValues(): void {
-    this.http.post<AboutMe>("https://localhost:44301/" + 'AboutMe', this.aboutMeForm.value).subscribe(result => {
+    this.http.post<AboutMe>(this.baseUrl + 'AboutMe', this.aboutMeForm.value).subscribe(result => {
       this.abouteMe = result;
     }, error => console.error(error));
 
