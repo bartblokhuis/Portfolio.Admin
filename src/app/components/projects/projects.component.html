@@ -33,7 +33,7 @@
                     <tr>
                       <th>Title</th>
                       <th>Description</th>
-                      <th>Image</th>       
+                      <th>Skills</th>       
                       <th class="icon">Published</th>
                       <th>Demo</th>
                       <th>Github</th>
@@ -44,7 +44,12 @@
                     <tr *ngFor="let project of projects;" cdkDrag>
                       <td class="col-md"> {{ project.title }} </td>
                       <td class="col-md" [innerHtml]="project.description"></td>
-                      <td class="col-md"> {{ project.image }} </td>
+                      <td class="col-md">
+                        <span class="badge bg-primary" *ngFor="let skill of project.skills">
+                          {{skill.name}}
+                        </span>
+                        
+                      </td>
                       <td class="icon col-md"> 
                         <ng-container *ngIf="project.published; else unpublished">
                           <i class="fas fa-check"></i>

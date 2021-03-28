@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { CreateProjectComponent } from './create-project/create-project.component';
 import { Project } from '../../data/project';
 import { DeleteProjectComponent } from './delete-project/delete-project.component';
 import { EditProjectComponent } from './edit-project/edit-project.component';
 import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
+import { HttpClient } from '@angular/common/http';
 
 
 
@@ -15,16 +16,16 @@ import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-
 })
 export class ProjectsComponent implements OnInit {
 
-  projects: Project[] = [
-    { id: 0, title: "Ultimate reddit bot", description: "<p>Ultimate Rmework.</p>", image: "",  displayOrder: 0, published: true },
-    { id: 1, title: "Ultimate localization", description: "", image: "", displayOrder: 1, published: false },
-    { id: 2, title: "Martian weather", description: "", image: "", displayOrder: 3, published: true },
-    { id: 3, title: "Clean download folder", description: "", image: "", displayOrder: 2, published: true },
-  ].sort((a,b) => a.displayOrder - b.displayOrder)
+  projects: Project[] = []
 
   closeResult = '';
 
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal,  http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+    http.get<Project[]>(baseUrl + 'Project').subscribe(result => {
+      this.projects = result;
+      console.log(result);
+    }, error => console.error(error));
+   }
 
   ngOnInit(): void {
   }
