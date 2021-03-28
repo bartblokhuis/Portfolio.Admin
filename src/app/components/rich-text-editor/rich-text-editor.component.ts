@@ -12,6 +12,12 @@ export class RichTextEditorComponent {
   @Input() content: string
 
   constructor() {
+
+
+    console.log(this.control);
+    console.log(this.content)
+
+    this.control = this.control ?? new FormControl()
     if(!this.content){
       this.content = "";
     }

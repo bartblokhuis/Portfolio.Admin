@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule }  from "@angular/common/http";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,7 +18,6 @@ import { QuillModule } from 'ngx-quill';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CreateProjectComponent } from './components/projects/create-project/create-project.component';
 import { EditProjectComponent } from './components/projects/edit-project/edit-project.component';
-import { FormsModule } from '@angular/forms';
 import { DeleteProjectComponent } from './components/projects/delete-project/delete-project.component';
 import { EditMessageComponent } from './components/messages/edit-message/edit-message.component';
 import { DeleteMessageComponent } from './components/messages/delete-message/delete-message.component';
@@ -53,7 +54,9 @@ import { DeleteSkillComponent } from './components/skills/delete-skill/delete-sk
     QuillModule.forRoot(),
     NgbModule,
     FormsModule,
-    DragDropModule
+    ReactiveFormsModule,
+    DragDropModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -19,24 +19,30 @@
         <!-- Content starts here -->
         <div class="row">
           <div class="col-lg-8">
-            <div class="card card-primary">
 
-              <div class="card-body">
-    
-                <div class="form-group">
-                  <label>Title</label>
-                  <input type="text" class="form-control" />
+            <form [formGroup]="aboutMeForm" (ngSubmit)="getValues()">
+              <div class="card card-primary">
+
+                <div class="card-body">
+                  
+                  <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" formControlName="title" name="title" class="form-control" />
+                  </div>
+      
+                  <div class="form-group">
+                    <label>Content</label>
+                    <!-- <input type="text" [(ngModel)]="abouteMe.content" name="content" class="form-control" [value]="abouteMe.content" /> -->
+
+                    <app-rich-text-editor [control]="aboutMeForm.controls.content"></app-rich-text-editor>
+                  </div>
                 </div>
-    
-                <div class="form-group">
-                  <label>Content</label>
-                  <app-rich-text-editor></app-rich-text-editor>
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary" (click)="saveAboutMe()">Save</button>
                 </div>
               </div>
-              <div class="card-footer">
-                <button type="submit" class="btn btn-primary">Save</button>
-              </div>
-            </div>
+            </form>
+            
           </div>
         </div>
         
