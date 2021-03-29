@@ -20,11 +20,14 @@ export class ProjectsComponent implements OnInit {
 
   closeResult = '';
 
+  private baseUrl: string;
+  private http: HttpClient;
+
   constructor(private modalService: NgbModal,  http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<Project[]>(baseUrl + 'Project').subscribe(result => {
-      this.projects = result;
-      console.log(result);
-    }, error => console.error(error));
+    this.baseUrl = baseUrl;
+    this.http = http;
+
+    this.loadProjects();
    }
 
   ngOnInit(): void {
@@ -39,9 +42,24 @@ export class ProjectsComponent implements OnInit {
     modalRef.componentInstance.project = project;
   }
 
-  deleteProject(project: Project): void {
-    const modalRef = this.modalService.open(DeleteProjectComponent, { size: 'lg' })
+  deleteProject(project: Project){
+    const modalRef = this.modalService.open(DeleteProjectComponent, { size: 'lg' });
     modalRef.componentInstance.project = project;
+    modalRef.componentInstance.modalRef = modalRef;
+
+    modalRef.result.then((result => {
+      this.loadProjects();
+    }))
+    .catch((error) => {
+      console.log(`ran into error: ${error}`)
+    });
+  }
+
+  loadProjects(){
+    this.http.get<Project[]>(this.baseUrl + 'Project').subscribe(result => {
+      this.projects = result;
+      console.log(result);
+    }, error => console.error(error));
   }
 
   drop(event: CdkDragDrop<Project[]>) {

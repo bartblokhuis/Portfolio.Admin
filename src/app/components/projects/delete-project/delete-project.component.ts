@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Inject } from '@angular/core';
 import { Project } from '../../../data/project';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-delete-project',
@@ -10,17 +11,21 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 export class DeleteProjectComponent {
 
   @Input() project: Project;
+  @Input() modalRef: NgbModalRef;
 
-  constructor() { }
+  private baseUrl: string;
+  private http: HttpClient;
 
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
+  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string){
+    this.baseUrl = baseUrl;
+    this.http = http;
   }
 
+  remove(id: number){
+    console.log(id);
+
+    this.http.delete(this.baseUrl + "Project?id=" + id).subscribe(result => {
+      this.modalRef.close();
+    });
+  }
 }
