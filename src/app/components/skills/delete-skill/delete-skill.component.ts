@@ -1,5 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Inject } from '@angular/core';
 import { Skill } from '../../../data/Skill';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-delete-skill',
@@ -8,7 +10,26 @@ import { Skill } from '../../../data/Skill';
 export class DeleteSkillComponent {
 
   @Input() skill: Skill;
+  @Input() modalRef: NgbModalRef;
 
-  constructor() { }
+  private baseUrl: string;
+  private http: HttpClient;
+
+  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string){
+    this.baseUrl = baseUrl;
+    this.http = http;
+  }
+
+  close(){
+    this.modalRef.close();
+  }
+
+  remove(id: number){
+    console.log(id);
+
+    this.http.delete(this.baseUrl + "Skill?id=" + id).subscribe(result => {
+      this.modalRef.close();
+    });
+  }
 
 }

@@ -21,6 +21,10 @@ export class DeleteProjectComponent {
     this.http = http;
   }
 
+  close(){
+    this.modalRef.close();
+  }
+
   remove(id: number){
     console.log(id);
 

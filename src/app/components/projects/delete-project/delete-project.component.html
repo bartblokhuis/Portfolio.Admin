@@ -1,6 +1,6 @@
 <div class="modal-header">
     <h4 class="modal-title" id="modal-project-title">Remove project</h4>
-    <button type="button" class="close" aria-label="Close" >
+    <button type="button" class="close" aria-label="Close" (click)="close()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -11,7 +11,7 @@
   </div>
   <div class="modal-footer justify-content-between">
 
-    <button type="button" class="btn btn-default">Cancel</button>
+    <button type="button" class="btn btn-default" (click)="close()">Cancel</button>
     <button type="button" class="btn btn-danger" (click)="remove(project.id)">Remove</button>
     
   </div>

@@ -23,13 +23,36 @@ export class SkillsComponent implements OnInit {
   frontEndSkills: Skill[] = this.skills;
   backEndSkills: Skill[] = this.skills;
   otherSkills: Skill[] = this.skills;
+
+  private baseUrl: string;
+  private http: HttpClient;
   
   constructor(private modalService: NgbModal, http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<SkillGroup[]>(baseUrl + 'SkillGroup').subscribe(result => {
+    this.http = http;
+    this.baseUrl = baseUrl;
+
+    this.loadSkills();
+   }
+
+   loadSkills() {
+    this.http.get<SkillGroup[]>(this.baseUrl + 'SkillGroup').subscribe(result => {
       this.skillGroups = result;
       console.log(result);
     }, error => console.error(error));
    }
+
+  removeSkill(skill: Skill){
+    const modalRef = this.modalService.open(DeleteSkillComponent, { size: 'lg' });
+    modalRef.componentInstance.skill = skill;
+    modalRef.componentInstance.modalRef = modalRef;
+
+    modalRef.result.then((result => {
+      this.loadSkills();
+    }))
+    .catch((error) => {
+      console.log(`ran into error: ${error}`)
+    });
+  }
 
   ngOnInit(): void {
   }
@@ -55,12 +78,6 @@ export class SkillsComponent implements OnInit {
     const modalRef = this.modalService.open(EditSkillComponent, { size: 'lg' })
     modalRef.componentInstance.skill = skill;
   }
-
-  removeSkill(skill: Skill) {
-    const modalRef = this.modalService.open(DeleteSkillComponent, { size: 'lg' })
-    modalRef.componentInstance.skill = skill;
-  }
-
 
   dropFrontEndSkills(event: CdkDragDrop<Skill[]>) {
     this.frontEndSkills = this.drop(event, this.frontEndSkills);
