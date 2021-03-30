@@ -41,6 +41,19 @@ export class SkillsComponent implements OnInit {
     }, error => console.error(error));
    }
 
+   addSkill(skillGroup: SkillGroup){
+     const modalRef = this.modalService.open(CreateSkillComponent, { size: 'lg' })
+     modalRef.componentInstance.skillGroup = skillGroup;
+     modalRef.componentInstance.modalRef = modalRef;
+
+     modalRef.result.then((result => {
+      this.loadSkills();
+    }))
+    .catch((error) => {
+      console.log(`ran into error: ${error}`)
+    });
+   }
+
   removeSkill(skill: Skill){
     const modalRef = this.modalService.open(DeleteSkillComponent, { size: 'lg' });
     modalRef.componentInstance.skill = skill;
@@ -55,23 +68,6 @@ export class SkillsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  }
-
-  addFrontEndSkill(){
-    this.addSkill(SkillType.FrontEnd)
-  }
-
-  addBackEndSkill(){
-    this.addSkill(SkillType.BackEnd);
-  }
-
-  addOtherSkill(){
-    this.addSkill(SkillType.Other);
-  }
-
-  addSkill(skillType: SkillType){
-    const modalRef = this.modalService.open(CreateSkillComponent, { size: 'lg' })
-    modalRef.componentInstance.skillType = skillType;
   }
 
   editSkill(skill: Skill){

@@ -37,7 +37,7 @@
                   <tbody cdkDropList (cdkDropListDropped)="dropBackEndSkills($event)">
                     <tr *ngFor="let skill of skillGroup.skills;" cdkDrag>
                       <td> {{ skill.name }} </td>
-                      <td> {{ skill.icon }} </td>
+                      <td> <img [src]="baseUrl + skill.iconPath"> </td>
                       <td> 
                         <div class="actions">
                           <div class="action" cdkDragHandle>
@@ -57,7 +57,7 @@
               </div>
 
               <div class="card-footer">
-                <button type="submit" class="btn btn-primary"  (click)="addBackEndSkill()">Add skill</button>
+                <button type="submit" class="btn btn-primary"  (click)="addSkill(skillGroup)">Add skill</button>
               </div>
             </div>
           </div>
