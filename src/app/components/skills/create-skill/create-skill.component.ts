@@ -17,24 +17,25 @@ export class CreateSkillComponent implements OnInit {
 
   currentFileName: string = 'File';
 
-  myForm = new FormGroup({
+  createForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     file: new FormControl('', [Validators.required]),
     fileSource: new FormControl('', [Validators.required])
   });
 
-  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
+  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {
+   
+   }
 
   ngOnInit(): void {
   }
 
   onFileChange(event) {
   
-    console.log(event);
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.currentFileName = file.name;
-      this.myForm.patchValue({
+      this.createForm.patchValue({
         fileSource: file
       });
     }
@@ -44,7 +45,7 @@ export class CreateSkillComponent implements OnInit {
 
     var data = {
       id: 0,
-      name: this.myForm.get('name').value,
+      name: this.createForm.get('name').value,
       iconPath: '',
       displayNumber: 0,
       skillGroupId: this.skillGroup.id
@@ -54,7 +55,7 @@ export class CreateSkillComponent implements OnInit {
       var skillId = result.id;
 
       const formData = new FormData();
-      formData.append('icon', this.myForm.get('fileSource').value);
+      formData.append('icon', this.createForm.get('fileSource').value);
 
       this.http.put(this.baseUrl + "Skill/SaveSkillImage/" + skillId, formData).subscribe((result) => {
         this.modalRef.close();
