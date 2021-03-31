@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
-import { Message, MessageStatusToLabelMapping, MessageStatus } from '../../../data/Message';
+import { Message, MessageStatusToLabelMapping, MessageStatus } from 'src/app/data/Messages/Message';
+import { UpdateMessage } from 'src/app/data/Messages/UpdateMessage';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { HttpClient} from '@angular/common/http';
 import { FormControl, FormGroup } from '@angular/forms';
+import { MessageService } from 'src/app/services/messages/message.service';
 
 
 @Component({
@@ -16,17 +17,11 @@ export class EditMessageComponent implements OnInit {
   @Input() afterInit: Function;
   @Input() modalRef: NgbModalRef;
 
-  http: HttpClient;
-  baseUrl: string;
-
   editMessageForm = new FormGroup({
     messageStatus: new FormControl('')
   });
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string){
-    this.baseUrl = baseUrl;
-    this.http = http;
-  }
+  constructor(private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.editMessageForm.controls.messageStatus.setValue(this.message.messageStatus);
@@ -42,21 +37,14 @@ export class EditMessageComponent implements OnInit {
   save() {
     var values = this.editMessageForm.value;
 
-    var data = {
-      "id": this.message.id,
-      "messageStatus": parseInt(values.messageStatus)
+    var updateMessage: UpdateMessage = {
+      id: this.message.id,
+      messageStatus: parseInt(values.messageStatus)
     };
 
-    this.http.put(this.baseUrl + "Messages", data).subscribe((result) =>{
+    this.messageService.editMessage(updateMessage).subscribe(() => {
       this.modalRef.close();
     });
-  }
-
-  public setMessage(message: Message){
-    console.log("test test")
-    this.message = message;
-    console.log(message);
-    this.editMessageForm.controls.messageStatus.setValue(message.messageStatus);
   }
 
 }

@@ -1,4 +1,4 @@
-import { BaseEntity } from './BaseEntity';
+import { BaseEntity } from '../BaseEntity';
 
 export enum MessageStatus {
     Unread,

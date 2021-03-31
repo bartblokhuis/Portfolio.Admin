@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule }  from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -12,7 +11,6 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AboutMeComponent } from './components/about-me/about-me.component';
 import { SkillsComponent } from './components/skills/skills.component';
 import { ProjectsComponent } from './components/projects/projects.component';
-import { MessagesComponent } from './components/messages/messages.component';
 import { RichTextEditorComponent } from './components/rich-text-editor/rich-text-editor.component';
 import { QuillModule } from 'ngx-quill';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -25,6 +23,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CreateSkillComponent } from './components/skills/create-skill/create-skill.component';
 import { EditSkillComponent } from './components/skills/edit-skill/edit-skill.component';
 import { DeleteSkillComponent } from './components/skills/delete-skill/delete-skill.component';
+import { ListMessagesComponent } from './components/messages/list-messages/list-messages.component';
 
 
 @NgModule({
@@ -37,7 +36,6 @@ import { DeleteSkillComponent } from './components/skills/delete-skill/delete-sk
     AboutMeComponent,
     SkillsComponent,
     ProjectsComponent,
-    MessagesComponent,
     RichTextEditorComponent,
     CreateProjectComponent,
     EditProjectComponent,
@@ -47,6 +45,7 @@ import { DeleteSkillComponent } from './components/skills/delete-skill/delete-sk
     CreateSkillComponent,
     EditSkillComponent,
     DeleteSkillComponent,
+    ListMessagesComponent,
   ],
   imports: [
     BrowserModule,
