@@ -22,7 +22,18 @@
           <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let skillGroup of skillGroups">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">{{skillGroup.title}}</h3>
+                <div class="pull-left">
+                  <input type="text" [value]="skillGroup.title" [id]="skillGroup.id" style="display: none">
+                  <h3 class="card-title" [id]="skillGroup.id + '_label'">
+                    {{skillGroup.title}}
+                  </h3>
+                </div>
+                <div class="float-right">
+                  <i class="fas fa-pen-alt" (click)="editSkillGroup(skillGroup.id)" [id]="skillGroup.id + '_edit_button'"></i>
+                  <i class="fas fa-save" (click)="saveSkillGroup(skillGroup)" [id]="skillGroup.id + '_save_button'" style="display: none"></i>
+                  <i class="fas fa-trash-alt danger" (click)="deleteSkillGroup(skillGroup)"></i>
+                </div>
+                
               </div>
 
               <div class="card-body table-responsive p-0" style="height: 300px;">
@@ -60,6 +71,47 @@
                 <button type="submit" class="btn btn-primary"  (click)="addSkill(skillGroup)">Add skill</button>
               </div>
             </div>
+          </div>
+
+
+          <div class="col-lg-4 col-md-6 col-sm-12" *ngIf="createSkillGroup">
+            <div class="card">
+              <div class="card-header">
+                <div class="pull-left">
+                  <input type="text" [value]="" id="newSkillGroupTitle">
+                  <!-- <h3 class="card-title" [id]="skillGroup.id + '_label'">
+                    {{skillGroup.title}}
+                  </h3> -->
+                </div>
+                <div class="float-right">
+                  <i class="fas fa-save" (click)="saveNewSkillGroup(false)"></i>
+                </div>
+                
+              </div>
+
+              <div class="card-body table-responsive p-0" style="height: 300px;">
+                <table class="table table-head-fixed text-nowrap">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Icon</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody c>
+                    
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="card-footer">
+                <button type="submit" class="btn btn-primary" (click)="saveNewSkillGroup(true)">Add skill</button>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <button type="submit" class="btn btn-primary"  (click)="addSkillGroup()">Add skill group</button>
           </div>
         </div>
       </div>

@@ -46,7 +46,7 @@ import { DeleteSkillComponent } from './components/skills/delete-skill/delete-sk
     DeleteMessageComponent,
     CreateSkillComponent,
     EditSkillComponent,
-    DeleteSkillComponent
+    DeleteSkillComponent,
   ],
   imports: [
     BrowserModule,

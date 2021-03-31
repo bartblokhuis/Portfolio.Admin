@@ -33,7 +33,6 @@ export class EditSkillComponent implements OnInit {
   }
 
   onFileChange(event) {
-    console.log(this.skill);
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.currentFileName = file.name;

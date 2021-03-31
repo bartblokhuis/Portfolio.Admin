@@ -4,9 +4,12 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Skill, SkillType} from '../../data/Skill';
 import { CreateSkillComponent } from './create-skill/create-skill.component';
 import { DeleteSkillComponent } from './delete-skill/delete-skill.component';
+import { DeleteSkillGroupComponent } from './delete-skill-group/delete-skill-group.component';
 import { EditSkillComponent } from './edit-skill/edit-skill.component';
 import { HttpClient } from '@angular/common/http';
 import { SkillGroup } from 'src/app/data/SkillGroup';
+
+import { DOCUMENT } from '@angular/common'; 
 
 
 
@@ -24,20 +27,15 @@ export class SkillsComponent implements OnInit {
   backEndSkills: Skill[] = this.skills;
   otherSkills: Skill[] = this.skills;
 
-  private baseUrl: string;
-  private http: HttpClient;
+  createSkillGroup = false;
   
-  constructor(private modalService: NgbModal, http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    this.http = http;
-    this.baseUrl = baseUrl;
-
+  constructor(private modalService: NgbModal, private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, @Inject(DOCUMENT) private document) {
     this.loadSkills();
    }
 
    loadSkills() {
     this.http.get<SkillGroup[]>(this.baseUrl + 'SkillGroup').subscribe(result => {
       this.skillGroups = result;
-      console.log(result);
     }, error => console.error(error));
    }
 
@@ -81,51 +79,75 @@ export class SkillsComponent implements OnInit {
     });
   }
 
+  editSkillGroup(skillGroupId: number){
+    const input = this.document.getElementById(skillGroupId);
+    const titleLabel = this.document.getElementById(skillGroupId + "_label");
+    const editButton = this.document.getElementById(skillGroupId + "_edit_button");
+    const saveButton = this.document.getElementById(skillGroupId + "_save_button");
+    input.style.display = 'block';
+    saveButton.style.display = 'block';
+    titleLabel.style.display = 'none';
+    editButton.style.display = 'none';
+
+  }
+
+  saveSkillGroup(skillGroup: SkillGroup){
+    const input = this.document.getElementById(skillGroup.id);
+    skillGroup.title = input.value;
+
+    this.http.put(this.baseUrl + "SkillGroup", skillGroup).subscribe((result: SkillGroup) => {
+      skillGroup.title = result.title;
+
+
+      const titleLabel = this.document.getElementById(skillGroup.id + "_label");
+    const editButton = this.document.getElementById(skillGroup.id + "_edit_button");
+    const saveButton = this.document.getElementById(skillGroup.id + "_save_button");
+    input.style.display = 'none';
+    saveButton.style.display = 'none';
+    titleLabel.style.display = 'block';
+    editButton.style.display = 'block';
+
+    });
+  }
+
+  deleteSkillGroup(skillGroup: SkillGroup){
+    const modalRef = this.modalService.open(DeleteSkillGroupComponent, { size: 'lg' });
+    modalRef.componentInstance.skillGroup = skillGroup;
+    modalRef.componentInstance.modalRef = modalRef;
+
+    modalRef.result.then((result => {
+      this.loadSkills();
+    }))
+    .catch((error) => {
+      console.log(`ran into error: ${error}`)
+    });
+  }
+
+  addSkillGroup() {
+    this.createSkillGroup = true;
+  }
+
+  saveNewSkillGroup(addNewSkill: boolean){
+    const title = this.document.getElementById("newSkillGroupTitle");
+    var skillGroup = {
+      id: 0,
+      title: title.value,
+      displayNumber: 0
+    }
+
+    this.http.post(this.baseUrl + "SkillGroup", skillGroup).subscribe((result: SkillGroup) => {
+      this.loadSkills();
+      this.createSkillGroup = false;
+      title.value = "";
+
+      if(addNewSkill){
+        this.addSkill(result);
+      }
+
+    })
+  }
+
   ngOnInit(): void {
   }
-
-  dropFrontEndSkills(event: CdkDragDrop<Skill[]>) {
-    this.frontEndSkills = this.drop(event, this.frontEndSkills);
-  }
-
-  dropBackEndSkills(event: CdkDragDrop<Skill[]>) {
-    this.backEndSkills = this.drop(event, this.backEndSkills);
-  }
-
-  dropOtherSkills(event: CdkDragDrop<Skill[]>) {
-    this.otherSkills = this.drop(event, this.otherSkills);
-  }
-
-  drop(event: CdkDragDrop<Skill[]>, skills: Skill[]) {
-    var startIndex = event.previousIndex;
-    var endIndex = event.currentIndex;
-
-    //Set the start and end index based on wether the project is moving up or down.
-    if(event.previousIndex > event.currentIndex){
-      startIndex = event.currentIndex;
-      endIndex = event.previousIndex;
-    }
-
-    for (let i = startIndex; i <= endIndex; i++){
-      var skill = skills[i];
-
-      if(i === event.previousIndex){
-        skill.displayNumber = event.currentIndex;
-      }
-
-      else if(event.previousIndex > event.currentIndex) {
-        skill.displayNumber++;
-      }
-
-      else{
-        skill.displayNumber--;
-      }
-    }
-    
-    skills.sort((a,b) => a.displayNumber - b.displayNumber);
-
-    return skills;
-  }
-
   
 }
