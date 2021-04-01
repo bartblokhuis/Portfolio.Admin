@@ -40,8 +40,8 @@
                       <th>Actions</th>
                     </tr>
                   </thead>
-                  <tbody cdkDropList (cdkDropListDropped)="drop($event)">
-                    <tr *ngFor="let project of projects;" cdkDrag>
+                  <tbody>
+                    <tr *ngFor="let project of projects;">
                       <td class="col-md"> {{ project.title }} </td>
                       <td class="col-md" [innerHtml]="project.description"></td>
                       <td class="col-md">
@@ -62,7 +62,7 @@
                       <td class="col-md"> <a *ngIf="project.githubUrl" [href]="project.githubUrl" target="_blank">{{ project.githubUrl }}</a></td>
                       <td class="col-md"> 
                         <div class="actions">
-                          <div class="action" cdkDragHandle>
+                          <div class="action">
                             <i class="fas fa-bars"></i>
                           </div>
                           <div (click)="editProject(project)" class="action">

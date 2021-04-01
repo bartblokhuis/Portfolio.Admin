@@ -1,7 +1,7 @@
-import { Component, Input, Inject } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Project } from '../../../data/project';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { HttpClient} from '@angular/common/http';
+import { ProjectService } from 'src/app/services/projects/project.service';
 
 @Component({
   selector: 'app-delete-project',
@@ -13,22 +13,14 @@ export class DeleteProjectComponent {
   @Input() project: Project;
   @Input() modalRef: NgbModalRef;
 
-  private baseUrl: string;
-  private http: HttpClient;
-
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string){
-    this.baseUrl = baseUrl;
-    this.http = http;
-  }
+  constructor(private projectSerivce: ProjectService){ }
 
   close(){
     this.modalRef.close();
   }
 
   remove(id: number){
-    console.log(id);
-
-    this.http.delete(this.baseUrl + "Project?id=" + id).subscribe(result => {
+    this.projectSerivce.deleteProject(id).subscribe(() => {
       this.modalRef.close();
     });
   }

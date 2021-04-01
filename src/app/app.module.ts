@@ -9,7 +9,6 @@ import { HeaderComponent } from './components/header/header.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AboutMeComponent } from './components/about-me/about-me.component';
-import { ProjectsComponent } from './components/projects/projects.component';
 import { RichTextEditorComponent } from './components/rich-text-editor/rich-text-editor.component';
 import { QuillModule } from 'ngx-quill';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -27,6 +26,7 @@ import { DeleteSkillGroupComponent } from './components/skills-groups/delete-ski
 import { ListSkillGroupComponent } from './components/skills-groups/list-skill-group/list-skill-group.component';
 import { CreateSkillGroupComponent } from './components/skills-groups/create-skill-group/create-skill-group.component';
 import { ListSkillComponent } from './components/skills-groups/skills/list-skill/list-skill.component';
+import { ListProjectComponent } from './components/projects/list-project/list-project.component';
 
 
 @NgModule({
@@ -37,7 +37,6 @@ import { ListSkillComponent } from './components/skills-groups/skills/list-skill
     SidebarComponent,
     DashboardComponent,
     AboutMeComponent,
-    ProjectsComponent,
     RichTextEditorComponent,
     CreateProjectComponent,
     EditProjectComponent,
@@ -52,6 +51,7 @@ import { ListSkillComponent } from './components/skills-groups/skills/list-skill
     ListSkillGroupComponent,
     CreateSkillGroupComponent,
     ListSkillComponent,
+    ListProjectComponent,
   ],
   imports: [
     BrowserModule,

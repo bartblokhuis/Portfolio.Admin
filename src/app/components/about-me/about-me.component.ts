@@ -1,6 +1,7 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { AboutMe } from '../../data/AboutMe';
+import { AboutMeService } from '../../services/about-me/about-me.service';
 
 @Component({
   selector: 'app-about-me',
@@ -11,39 +12,26 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class AboutMeComponent implements OnInit {
 
   public abouteMe: AboutMe = {title: "", content: ""};
-  private http: HttpClient;
-  private baseUrl : string
 
   aboutMeForm = new FormGroup({
     title: new FormControl(''),
     content: new FormControl('')
   });
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+  constructor(private aboutMeService: AboutMeService) {
 
-    this.http = http;
-    this.baseUrl = baseUrl;
-
-    http.get<AboutMe>(baseUrl + 'AboutMe').subscribe(result => {
-      this.aboutMeForm.controls.title.setValue(result.title);
-      this.aboutMeForm.controls.content.setValue(result.content);
-
-    }, error => console.error(error));
+    aboutMeService.getAboutMe().subscribe((aboutMe) => {
+      this.aboutMeForm.controls.title.setValue(aboutMe.title);
+      this.aboutMeForm.controls.content.setValue(aboutMe.content);
+    });
   }
 
   ngOnInit(): void {
   }
 
   saveAboutMe(): void {
-    this.http.post<AboutMe>(this.baseUrl + 'AboutMe', this.aboutMeForm.value).subscribe(result => {
-      this.abouteMe = result;
-    }, error => console.error(error));
-
+    this.aboutMeService.saveAboutMe(this.aboutMeForm.value).subscribe((aboutMe) => {
+      this.abouteMe = aboutMe;
+    });
   }
-
-}
-
-interface AboutMe {
-  title: string;
-  content: string;
 }
