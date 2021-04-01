@@ -9,7 +9,6 @@ import { HeaderComponent } from './components/header/header.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AboutMeComponent } from './components/about-me/about-me.component';
-import { SkillsComponent } from './components/skills/skills.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { RichTextEditorComponent } from './components/rich-text-editor/rich-text-editor.component';
 import { QuillModule } from 'ngx-quill';
@@ -20,10 +19,14 @@ import { DeleteProjectComponent } from './components/projects/delete-project/del
 import { EditMessageComponent } from './components/messages/edit-message/edit-message.component';
 import { DeleteMessageComponent } from './components/messages/delete-message/delete-message.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { CreateSkillComponent } from './components/skills/create-skill/create-skill.component';
-import { EditSkillComponent } from './components/skills/edit-skill/edit-skill.component';
-import { DeleteSkillComponent } from './components/skills/delete-skill/delete-skill.component';
+import { CreateSkillComponent } from './components/skills-groups/skills/create-skill/create-skill.component';
+import { EditSkillComponent } from './components/skills-groups/skills/edit-skill/edit-skill.component';
+import { DeleteSkillComponent } from './components/skills-groups/skills/delete-skill/delete-skill.component';
 import { ListMessagesComponent } from './components/messages/list-messages/list-messages.component';
+import { DeleteSkillGroupComponent } from './components/skills-groups/delete-skill-group/delete-skill-group.component';
+import { ListSkillGroupComponent } from './components/skills-groups/list-skill-group/list-skill-group.component';
+import { CreateSkillGroupComponent } from './components/skills-groups/create-skill-group/create-skill-group.component';
+import { ListSkillComponent } from './components/skills-groups/skills/list-skill/list-skill.component';
 
 
 @NgModule({
@@ -34,7 +37,6 @@ import { ListMessagesComponent } from './components/messages/list-messages/list-
     SidebarComponent,
     DashboardComponent,
     AboutMeComponent,
-    SkillsComponent,
     ProjectsComponent,
     RichTextEditorComponent,
     CreateProjectComponent,
@@ -46,6 +48,10 @@ import { ListMessagesComponent } from './components/messages/list-messages/list-
     EditSkillComponent,
     DeleteSkillComponent,
     ListMessagesComponent,
+    DeleteSkillGroupComponent,
+    ListSkillGroupComponent,
+    CreateSkillGroupComponent,
+    ListSkillComponent,
   ],
   imports: [
     BrowserModule,

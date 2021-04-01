@@ -1,14 +1,14 @@
-import { Input } from '@angular/core';
-import { Component, OnInit, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { CreateUpdateSkill } from 'src/app/data/Skill';
 import { SkillGroup } from 'src/app/data/SkillGroup';
-import { Skill } from 'src/app/data/Skill';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { SkillService } from 'src/app/services/skills/skill.service';
 
 @Component({
   selector: 'app-create-skill',
-  templateUrl: './create-skill.component.html'
+  templateUrl: './create-skill.component.html',
+  styleUrls: ['./create-skill.component.scss']
 })
 export class CreateSkillComponent implements OnInit {
 
@@ -23,15 +23,12 @@ export class CreateSkillComponent implements OnInit {
     fileSource: new FormControl('', [Validators.required])
   });
 
-  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {
-   
-   }
+  constructor(private skillService: SkillService) { }
 
   ngOnInit(): void {
   }
 
   onFileChange(event) {
-  
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.currentFileName = file.name;
@@ -43,21 +40,20 @@ export class CreateSkillComponent implements OnInit {
 
   submit(){
 
-    var data = {
+    const skill: CreateUpdateSkill = {
       id: 0,
-      name: this.createForm.get('name').value,
-      iconPath: '',
       displayNumber: 0,
-      skillGroupId: this.skillGroup.id
+      iconPath: '',
+      skillGroupId: this.skillGroup.id,
+      name: this.createForm.get('name').value
     };
 
-    this.http.post(this.baseUrl + "Skill", data).subscribe((result: Skill) => {
-      var skillId = result.id;
+    this.skillService.createSkill(skill).subscribe((skill) => {
+      const skillId = skill.id;
 
       const formData = new FormData();
       formData.append('icon', this.createForm.get('fileSource').value);
-
-      this.http.put(this.baseUrl + "Skill/SaveSkillImage/" + skillId, formData).subscribe((result) => {
+      this.skillService.saveSkillImage(skillId, formData).subscribe(() => {
         this.modalRef.close();
       });
     });

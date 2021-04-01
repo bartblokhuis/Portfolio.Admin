@@ -14,4 +14,12 @@ export interface Skill {
     skillGroup: SkillGroup,
     id: number
 }
+
+export interface CreateUpdateSkill {
+    name: string,
+    iconPath: string,
+    displayNumber: number,
+    skillGroupId: number,
+    id: number
+}
    
