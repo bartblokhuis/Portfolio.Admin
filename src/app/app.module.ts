@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule }  from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -27,6 +28,9 @@ import { ListSkillGroupComponent } from './components/skills-groups/list-skill-g
 import { CreateSkillGroupComponent } from './components/skills-groups/create-skill-group/create-skill-group.component';
 import { ListSkillComponent } from './components/skills-groups/skills/list-skill/list-skill.component';
 import { ListProjectComponent } from './components/projects/list-project/list-project.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -56,14 +60,20 @@ import { ListProjectComponent } from './components/projects/list-project/list-pr
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     QuillModule.forRoot(),
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
     DragDropModule,
-    HttpClientModule
+    HttpClientModule,
+    NgMultiSelectDropDownModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ]
 })
 export class AppModule { }

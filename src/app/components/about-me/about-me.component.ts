@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { AboutMe } from '../../data/AboutMe';
 import { AboutMeService } from '../../services/about-me/about-me.service';
 
@@ -18,7 +19,7 @@ export class AboutMeComponent implements OnInit {
     content: new FormControl('')
   });
 
-  constructor(private aboutMeService: AboutMeService) {
+  constructor(private aboutMeService: AboutMeService, private toastr: ToastrService) {
 
     aboutMeService.getAboutMe().subscribe((aboutMe) => {
       this.aboutMeForm.controls.title.setValue(aboutMe.title);
@@ -32,6 +33,7 @@ export class AboutMeComponent implements OnInit {
   saveAboutMe(): void {
     this.aboutMeService.saveAboutMe(this.aboutMeForm.value).subscribe((aboutMe) => {
       this.abouteMe = aboutMe;
+      this.toastr.success("Saved changes")
     });
   }
 }

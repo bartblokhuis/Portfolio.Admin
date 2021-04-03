@@ -4,10 +4,15 @@ import { Skill } from './Skill';
 export interface Project extends BaseEntity {
     title: string,
     description: string,
-    image: string,
-    displayOrder: number,
-    published: boolean,
+    imagePath: string,
+    displayNumber: number,
+    isPublished: boolean,
     skills? : Skill[],
     githubUrl? :string,
     demoUrl?: string,
+}
+
+export interface UpdateProjectSkills {
+    projectId: number,
+    skillIds: number[]
 }

@@ -12,6 +12,10 @@ export class SkillService {
     this.baseUrl += "Skill/"
    }
 
+   getSkills(): Observable<Skill[]> {
+     return this.http.get<Skill[]>(this.baseUrl);
+   }
+
    getSkillsByGroupId(groupId: number): Observable<Skill[]> {
     return this.http.get<Skill[]>(this.baseUrl + 'GetBySkillGroupId/' + groupId);
   }

@@ -51,7 +51,7 @@
                         
                       </td>
                       <td class="icon col-md"> 
-                        <ng-container *ngIf="project.published; else unpublished">
+                        <ng-container *ngIf="project.isPublished; else unpublished">
                           <i class="fas fa-check"></i>
                         </ng-container>
                         <ng-template #unpublished>
