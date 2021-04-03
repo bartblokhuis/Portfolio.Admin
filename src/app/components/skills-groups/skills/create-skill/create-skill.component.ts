@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { CreateUpdateSkill } from 'src/app/data/Skill';
 import { SkillGroup } from 'src/app/data/SkillGroup';
 import { SkillService } from 'src/app/services/skills/skill.service';
@@ -23,7 +24,7 @@ export class CreateSkillComponent implements OnInit {
     fileSource: new FormControl('', [Validators.required])
   });
 
-  constructor(private skillService: SkillService) { }
+  constructor(private skillService: SkillService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -54,6 +55,7 @@ export class CreateSkillComponent implements OnInit {
       const formData = new FormData();
       formData.append('icon', this.createForm.get('fileSource').value);
       this.skillService.saveSkillImage(skillId, formData).subscribe(() => {
+        this.toastr.success("Saved skill: " + skill.name);
         this.modalRef.close();
       });
     });

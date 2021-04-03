@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { Project, UpdateProjectSkills } from 'src/app/data/project';
 import { ProjectService } from 'src/app/services/projects/project.service';
@@ -31,7 +32,7 @@ export class CreateProjectComponent implements OnInit {
     fileSource: new FormControl('')
   });
 
-  constructor(private skillService: SkillService, private projectService: ProjectService) { }
+  constructor(private skillService: SkillService, private projectService: ProjectService, private toastr: ToastrService) { }
 
   currentFileName: string = 'File';
 
@@ -77,11 +78,13 @@ export class CreateProjectComponent implements OnInit {
           var uploadImageRequest = this.uploadProjectImage(project.id);
           if(!uploadImageRequest){
             this.modalRef.close();
+            this.showCreatedNotification();
             return;
           }
 
           uploadImageRequest.subscribe(() => {
             this.modalRef.close();
+            this.showCreatedNotification();
             return;
           })
         });
@@ -90,11 +93,13 @@ export class CreateProjectComponent implements OnInit {
         var uploadImageRequest = this.uploadProjectImage(project.id);
         if(!uploadImageRequest){
           this.modalRef.close();
+          this.showCreatedNotification();
           return;
         }
 
         uploadImageRequest.subscribe(() => {
           this.modalRef.close();
+          this.showCreatedNotification();
           return;
         })
       }
@@ -126,6 +131,10 @@ export class CreateProjectComponent implements OnInit {
       formData.append('icon', fileSource);
 
       return this.projectService.updateProjectImage(projectId, formData);
+  }
+
+  showCreatedNotification(){
+    this.toastr.success("Saved the new project");
   }
 
 }

@@ -4,6 +4,7 @@ import { UpdateMessage } from 'src/app/data/Messages/UpdateMessage';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MessageService } from 'src/app/services/messages/message.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -21,7 +22,7 @@ export class EditMessageComponent implements OnInit {
     messageStatus: new FormControl('')
   });
 
-  constructor(private messageService: MessageService) { }
+  constructor(private messageService: MessageService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.editMessageForm.controls.messageStatus.setValue(this.message.messageStatus);
@@ -44,6 +45,7 @@ export class EditMessageComponent implements OnInit {
 
     this.messageService.editMessage(updateMessage).subscribe(() => {
       this.modalRef.close();
+      this.toastr.success("Updated message status");
     });
   }
 

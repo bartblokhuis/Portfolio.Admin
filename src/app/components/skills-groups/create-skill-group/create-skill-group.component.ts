@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { SkillGroup } from 'src/app/data/SkillGroup';
 import { SkillGroupService } from 'src/app/services/skillgroup/skillgroup.service';
 
@@ -14,7 +15,7 @@ export class CreateSkillGroupComponent implements OnInit, AfterViewInit {
   @Output() onCreated: EventEmitter<any> = new EventEmitter();
   title: FormControl = new FormControl('');
 
-  constructor(private skillGroupService: SkillGroupService) { }
+  constructor(private skillGroupService: SkillGroupService, private toastr: ToastrService) { }
   
   ngAfterViewInit(): void {
     this.titleControl.nativeElement.focus();
@@ -33,6 +34,7 @@ export class CreateSkillGroupComponent implements OnInit, AfterViewInit {
     }
 
     this.skillGroupService.createSkillGroup(newSkillgroup).subscribe((skillGroup) => {
+      this.toastr.success("Saved skill group " + skillGroup.title);
       this.onCreated.emit([skillGroup, openNewSkillModal]);
     })
   }

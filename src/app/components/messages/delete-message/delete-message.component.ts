@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Message } from 'src/app/data/Messages/Message';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { MessageService } from 'src/app/services/messages/message.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-delete-message',
@@ -12,7 +13,7 @@ export class DeleteMessageComponent {
   @Input() message: Message;
   @Input() modalRef: NgbModalRef;
 
-  constructor(private messageService: MessageService){
+  constructor(private messageService: MessageService, private toastr: ToastrService){
   }
 
   close(){
@@ -22,6 +23,7 @@ export class DeleteMessageComponent {
   remove(id: number){
     this.messageService.deleteMessage(id).subscribe(() => {
       this.modalRef.close();
+      this.toastr.success("Removed message");
     });
   }
 

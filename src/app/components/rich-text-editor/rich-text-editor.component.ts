@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms'
 
 @Component({
@@ -10,6 +10,7 @@ export class RichTextEditorComponent {
 
   @Input() control: FormControl
   @Input() content: string
+  @Output() onContentChanged = new EventEmitter()
 
   constructor() {
 
@@ -19,8 +20,8 @@ export class RichTextEditorComponent {
     }
   }
 
-  onChange() {
-    alert("Changed");
+  onChange($event) {
+    this.onContentChanged.emit($event);
   }
 
 }

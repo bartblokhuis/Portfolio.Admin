@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { Project, UpdateProjectSkills } from 'src/app/data/project';
 import { Skill } from 'src/app/data/Skill';
@@ -37,7 +38,7 @@ export class EditProjectComponent implements OnInit {
   skillsDropDown = new FormControl('');
   skills: any[];
 
-  constructor(private skillService: SkillService, private projectService: ProjectService, private fb: FormBuilder) { }
+  constructor(private skillService: SkillService, private projectService: ProjectService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
 
@@ -104,10 +105,12 @@ export class EditProjectComponent implements OnInit {
         if(uploadImageRequest){
           uploadImageRequest.subscribe(() => {
             this.modalRef.close();
+            this.savedProjectNotification();
             return;
           });
         }else{
           this.modalRef.close();
+          this.savedProjectNotification();
             return;
         }
       })
@@ -134,6 +137,10 @@ export class EditProjectComponent implements OnInit {
       formData.append('icon', fileSource);
 
       return this.projectService.updateProjectImage(projectId, formData);
+  }
+
+  savedProjectNotification(){
+    this.toastr.success("Saved " + this.project.title);
   }
 
 }

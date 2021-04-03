@@ -13,6 +13,7 @@ import { AboutMeService } from '../../services/about-me/about-me.service';
 export class AboutMeComponent implements OnInit {
 
   public abouteMe: AboutMe = {title: "", content: ""};
+  showSaveButton: boolean = false;
 
   aboutMeForm = new FormGroup({
     title: new FormControl(''),
@@ -28,12 +29,18 @@ export class AboutMeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.showSaveButton = false;
+  }
+
+  changedAboutMe(): void {
+    this.showSaveButton = true;
   }
 
   saveAboutMe(): void {
     this.aboutMeService.saveAboutMe(this.aboutMeForm.value).subscribe((aboutMe) => {
       this.abouteMe = aboutMe;
-      this.toastr.success("Saved changes")
+      this.toastr.success("Saved changes");
+      this.showSaveButton = false;
     });
   }
 }

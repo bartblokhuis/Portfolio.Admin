@@ -4,5 +4,6 @@ name="editor"
 [placeholder]="''" 
 [required]="true"
 [maxLength]="10"
-class="text-editor">
+class="text-editor"
+(onContentChanged)="onChange($event)">
 </quill-editor>

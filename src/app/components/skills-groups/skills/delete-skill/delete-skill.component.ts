@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { Skill } from 'src/app/data/Skill';
 import { SkillService } from 'src/app/services/skills/skill.service';
 
@@ -13,7 +14,7 @@ export class DeleteSkillComponent implements OnInit {
   @Input() skill: Skill;
   @Input() modalRef: NgbModalRef;
 
-  constructor(private skillService: SkillService) { }
+  constructor(private skillService: SkillService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -23,10 +24,9 @@ export class DeleteSkillComponent implements OnInit {
   }
 
   remove(id: number){
-    console.log(id);
-
     this.skillService.deleteSkill(id).subscribe(result => {
       this.modalRef.close();
+      this.toastr.success("Removed skill: " + this.skill.name)
     });
   }
 
