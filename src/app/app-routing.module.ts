@@ -5,13 +5,14 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ListMessagesComponent } from './components/messages/list-messages/list-messages.component';
 import { ListProjectComponent } from './components/projects/list-project/list-project.component';
 import { ListSkillGroupComponent } from './components/skills-groups/list-skill-group/list-skill-group.component';
+import { AuthGuard } from './helpers/AuthGuard';
 
 const routes: Routes = [
-  { path: '', component: DashboardComponent, pathMatch: 'full' },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'about-me', component: AboutMeComponent },
-  { path: 'skills', component: ListSkillGroupComponent },
-  { path: 'projects', component: ListProjectComponent },
+  { path: '', component: DashboardComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'about-me', component: AboutMeComponent, canActivate: [AuthGuard] },
+  { path: 'skills', component: ListSkillGroupComponent, canActivate: [AuthGuard] },
+  { path: 'projects', component: ListProjectComponent, canActivate: [AuthGuard] },
   { path: 'messages', component: ListMessagesComponent },
 ];
 
