@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/Authentication/authentication.service';
 
-
-
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -20,5 +18,4 @@ export class HeaderComponent implements OnInit {
   logout(): void {
     this.authenticationService.logout();
   }
-
 }

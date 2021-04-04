@@ -5,7 +5,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS }  from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/header/header.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AboutMeComponent } from './components/about-me/about-me.component';
@@ -39,7 +38,6 @@ import { SharedModule } from './components/shared/shared.module';
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     SidebarComponent,
     DashboardComponent,
     AboutMeComponent,
