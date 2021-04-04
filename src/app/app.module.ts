@@ -34,6 +34,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { LoginComponent } from './components/login/login.component';
 import { JwtInterceptor } from './helpers/JwtInterceptor';
 import { ErrorInterceptor } from './helpers/ErrorInterceptor';
+import { AdminComponent } from './layouts/admin/admin.component';
+import { AuthComponent } from './layouts/auth/auth.component';
 
 
 @NgModule({
@@ -60,6 +62,8 @@ import { ErrorInterceptor } from './helpers/ErrorInterceptor';
     ListSkillComponent,
     ListProjectComponent,
     LoginComponent,
+    AdminComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
