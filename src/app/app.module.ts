@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { HttpClientModule }  from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS }  from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,6 +31,9 @@ import { ListProjectComponent } from './components/projects/list-project/list-pr
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ToastrModule } from 'ngx-toastr';
+import { LoginComponent } from './components/login/login.component';
+import { JwtInterceptor } from './helpers/JwtInterceptor';
+import { ErrorInterceptor } from './helpers/ErrorInterceptor';
 
 
 @NgModule({
@@ -56,6 +59,7 @@ import { ToastrModule } from 'ngx-toastr';
     CreateSkillGroupComponent,
     ListSkillComponent,
     ListProjectComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,7 +74,15 @@ import { ToastrModule } from 'ngx-toastr';
     NgMultiSelectDropDownModule,
     ToastrModule.forRoot()
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: JwtInterceptor,
+    multi: true
+  },{
+    provide: HTTP_INTERCEPTORS,
+    useClass: ErrorInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
