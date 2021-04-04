@@ -12,6 +12,7 @@ import { AuthenticationService } from '../../services/Authentication/authenticat
 })
 export class LoginComponent implements OnInit {
 
+
   loginForm: FormGroup;
     loading = false;
     submitted = false;
