@@ -9,16 +9,16 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <!-- Messages Dropdown Menu -->
-      <li class="nav-item" (click)="logout();">
-        <a class="nav-link" href="#">
-          <span>Logout</span>
-        </a>
-      </li>
-
       <li class="nav-item dropdown"> 
         <a class="nav-link" href="#">
           <i class="far fa-comments"></i>
           <span *ngIf="amountOfMessages > 0" class="badge badge-danger navbar-badge"> {{ amountOfMessages }} </span>
+        </a>
+      </li>
+
+      <li class="nav-item" (click)="logout();">
+        <a class="nav-link" href="#">
+          <i class="fas fa-power-off"></i>
         </a>
       </li>
     </ul>
