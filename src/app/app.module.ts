@@ -11,13 +11,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CreateProjectComponent } from './components/projects/create-project/create-project.component';
 import { EditProjectComponent } from './components/projects/edit-project/edit-project.component';
 import { DeleteProjectComponent } from './components/projects/delete-project/delete-project.component';
-import { EditMessageComponent } from './components/messages/edit-message/edit-message.component';
-import { DeleteMessageComponent } from './components/messages/delete-message/delete-message.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CreateSkillComponent } from './components/skills-groups/skills/create-skill/create-skill.component';
 import { EditSkillComponent } from './components/skills-groups/skills/edit-skill/edit-skill.component';
 import { DeleteSkillComponent } from './components/skills-groups/skills/delete-skill/delete-skill.component';
-import { ListMessagesComponent } from './components/messages/list-messages/list-messages.component';
 import { DeleteSkillGroupComponent } from './components/skills-groups/delete-skill-group/delete-skill-group.component';
 import { ListSkillGroupComponent } from './components/skills-groups/list-skill-group/list-skill-group.component';
 import { CreateSkillGroupComponent } from './components/skills-groups/create-skill-group/create-skill-group.component';
@@ -33,6 +30,7 @@ import { AdminComponent } from './layouts/admin/admin.component';
 import { AuthComponent } from './layouts/auth/auth.component';
 import { SharedModule } from './components/shared/shared.module';
 import { AboutMeModule } from './about-me/about-me.module';
+import { MessagesModule } from './messages/messages.module';
 import { ComponentsModule } from './components/components.module';
 
 @NgModule({
@@ -42,12 +40,9 @@ import { ComponentsModule } from './components/components.module';
     CreateProjectComponent,
     EditProjectComponent,
     DeleteProjectComponent,
-    EditMessageComponent,
-    DeleteMessageComponent,
     CreateSkillComponent,
     EditSkillComponent,
     DeleteSkillComponent,
-    ListMessagesComponent,
     DeleteSkillGroupComponent,
     ListSkillGroupComponent,
     CreateSkillGroupComponent,
@@ -59,6 +54,7 @@ import { ComponentsModule } from './components/components.module';
   ],
   imports: [
     AboutMeModule,
+    MessagesModule,
     BrowserModule,
     SharedModule,
     AppRoutingModule,

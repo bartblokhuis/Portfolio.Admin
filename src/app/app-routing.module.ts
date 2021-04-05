@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { ListMessagesComponent } from './components/messages/list-messages/list-messages.component';
 import { ListProjectComponent } from './components/projects/list-project/list-project.component';
 import { ListSkillGroupComponent } from './components/skills-groups/list-skill-group/list-skill-group.component';
 import { LoginComponent } from './components/login/login.component';
@@ -38,7 +37,7 @@ const routes: Routes = [
       }, 
       {
         path: 'messages',
-        component: ListMessagesComponent
+        loadChildren: './messages/messages.module#MessagesModule' 
       }
     ]
   },

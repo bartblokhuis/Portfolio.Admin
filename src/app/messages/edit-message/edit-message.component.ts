@@ -6,12 +6,11 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MessageService } from 'src/app/services/messages/message.service';
 import { ToastrService } from 'ngx-toastr';
 
-
 @Component({
   selector: 'app-edit-message',
   templateUrl: './edit-message.component.html',
+  styleUrls: ['./edit-message.component.scss']
 })
-
 export class EditMessageComponent implements OnInit {
 
   @Input() message: Message;
@@ -48,5 +47,6 @@ export class EditMessageComponent implements OnInit {
       this.toastr.success("Updated message status");
     });
   }
+
 
 }

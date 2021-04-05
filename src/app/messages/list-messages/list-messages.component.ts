@@ -3,7 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Message } from 'src/app/data/Messages/Message';
 import { DeleteMessageComponent } from '.././delete-message/delete-message.component';
 import { EditMessageComponent } from '.././edit-message/edit-message.component';
-import { MessageService } from '../../../services/messages/message.service';
+import { MessageService } from '../../services/messages/message.service';
 
 @Component({
   selector: 'app-list-messages',
@@ -47,4 +47,5 @@ export class ListMessagesComponent implements OnInit {
       console.log(`ran into error: ${error}`)
     });
   }
+
 }

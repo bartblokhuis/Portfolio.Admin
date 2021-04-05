@@ -3,10 +3,10 @@ import { Message } from 'src/app/data/Messages/Message';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { MessageService } from 'src/app/services/messages/message.service';
 import { ToastrService } from 'ngx-toastr';
-
 @Component({
   selector: 'app-delete-message',
-  templateUrl: './delete-message.component.html'
+  templateUrl: './delete-message.component.html',
+  styleUrls: ['./delete-message.component.scss']
 })
 export class DeleteMessageComponent {
 
