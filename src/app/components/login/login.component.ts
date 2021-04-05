@@ -12,6 +12,7 @@ import { AuthenticationService } from '../../services/Authentication/authenticat
 })
 export class LoginComponent implements OnInit {
 
+
   loginForm: FormGroup;
     loading = false;
     submitted = false;
@@ -54,7 +55,6 @@ export class LoginComponent implements OnInit {
         }
 
         this.loading = true;
-        console.log(this.f.rememberMe.value);
         this.authenticationService.login(this.f.username.value, this.f.password.value, this.f.rememberMe.value)
             .pipe(first())
             .subscribe(
