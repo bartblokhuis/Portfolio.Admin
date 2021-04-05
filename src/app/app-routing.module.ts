@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AboutMeComponent } from './components/about-me/about-me.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ListMessagesComponent } from './components/messages/list-messages/list-messages.component';
 import { ListProjectComponent } from './components/projects/list-project/list-project.component';
@@ -27,7 +26,7 @@ const routes: Routes = [
       }, 
       {
         path: 'about-me',
-        component: AboutMeComponent
+        loadChildren: './about-me/about-me.module#AboutMeModule'
       }, 
       {
         path: 'skills',

@@ -6,8 +6,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { AboutMeComponent } from './components/about-me/about-me.component';
-import { RichTextEditorComponent } from './components/rich-text-editor/rich-text-editor.component';
 import { QuillModule } from 'ngx-quill';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CreateProjectComponent } from './components/projects/create-project/create-project.component';
@@ -34,13 +32,13 @@ import { ErrorInterceptor } from './helpers/ErrorInterceptor';
 import { AdminComponent } from './layouts/admin/admin.component';
 import { AuthComponent } from './layouts/auth/auth.component';
 import { SharedModule } from './components/shared/shared.module';
+import { AboutMeModule } from './about-me/about-me.module';
+import { ComponentsModule } from './components/components.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    AboutMeComponent,
-    RichTextEditorComponent,
     CreateProjectComponent,
     EditProjectComponent,
     DeleteProjectComponent,
@@ -60,6 +58,7 @@ import { SharedModule } from './components/shared/shared.module';
     AuthComponent,
   ],
   imports: [
+    AboutMeModule,
     BrowserModule,
     SharedModule,
     AppRoutingModule,
@@ -71,6 +70,7 @@ import { SharedModule } from './components/shared/shared.module';
     DragDropModule,
     HttpClientModule,
     NgMultiSelectDropDownModule,
+    ComponentsModule,
     ToastrModule.forRoot()
   ],
   providers: [{
