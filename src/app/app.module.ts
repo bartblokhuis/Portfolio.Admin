@@ -5,9 +5,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS }  from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { HeaderComponent } from './components/header/header.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AboutMeComponent } from './components/about-me/about-me.component';
 import { RichTextEditorComponent } from './components/rich-text-editor/rich-text-editor.component';
@@ -29,21 +26,18 @@ import { CreateSkillGroupComponent } from './components/skills-groups/create-ski
 import { ListSkillComponent } from './components/skills-groups/skills/list-skill/list-skill.component';
 import { ListProjectComponent } from './components/projects/list-project/list-project.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-import { NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ToastrModule } from 'ngx-toastr';
 import { LoginComponent } from './components/login/login.component';
 import { JwtInterceptor } from './helpers/JwtInterceptor';
 import { ErrorInterceptor } from './helpers/ErrorInterceptor';
 import { AdminComponent } from './layouts/admin/admin.component';
 import { AuthComponent } from './layouts/auth/auth.component';
-
+import { SharedModule } from './components/shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FooterComponent,
-    HeaderComponent,
-    SidebarComponent,
     DashboardComponent,
     AboutMeComponent,
     RichTextEditorComponent,
@@ -67,6 +61,7 @@ import { AuthComponent } from './layouts/auth/auth.component';
   ],
   imports: [
     BrowserModule,
+    SharedModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     QuillModule.forRoot(),

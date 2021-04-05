@@ -27,8 +27,8 @@ export class SidebarComponent implements OnInit {
     { name: "Skills", path: "/skills", icon: "nav-icon fas fa-trophy" }, 
     { name: "Projects", path: "/projects", icon: "nav-icon fas fa-trophy" },
     { name: "Messages", path: "/messages", icon: "nav-icon fas fa-inbox", badge: { value: "New", style: "right badge badge-danger" } },
-  ]
-
+  ];
+  
   constructor() { }
 
   ngOnInit(): void {
