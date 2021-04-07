@@ -2,7 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SkillGroup } from 'src/app/data/SkillGroup';
-import { SkillGroupService } from '../../../services/skillgroup/skillgroup.service';
+import { SkillGroupService } from '../../services/skillgroup/skillgroup.service';
 import { DeleteSkillGroupComponent } from '../delete-skill-group/delete-skill-group.component';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { CreateSkillComponent } from '../skills/create-skill/create-skill.component';

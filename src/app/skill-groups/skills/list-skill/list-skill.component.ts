@@ -3,14 +3,14 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Skill } from 'src/app/data/Skill';
 import { SkillGroup } from 'src/app/data/SkillGroup';
 import { CreateSkillComponent } from '../create-skill/create-skill.component';
-import { SkillService } from '../../../../services/skills/skill.service';
+import { SkillService } from '../../../services/skills/skill.service';
 import { EditSkillComponent } from '../edit-skill/edit-skill.component';
 import { DeleteSkillComponent } from '../delete-skill/delete-skill.component';
 
 @Component({
   selector: 'app-list-skill',
   templateUrl: './list-skill.component.html',
-  styleUrls: ['./list-skill.component.scss'],
+  styleUrls: ['./list-skill.component.scss']
 })
 export class ListSkillComponent implements OnInit {
 
@@ -66,5 +66,4 @@ export class ListSkillComponent implements OnInit {
       console.log(`ran into error: ${error}`)
     });
   }
-
 }

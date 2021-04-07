@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ListSkillGroupComponent } from './components/skills-groups/list-skill-group/list-skill-group.component';
 import { AuthGuard } from './helpers/AuthGuard';
 import { AdminComponent } from './layouts/admin/admin.component';
 import { AuthComponent } from './layouts/auth/auth.component';
@@ -19,8 +18,7 @@ const routes: Routes = [
     children: [
       { 
         path: 'dashboard', 
-        loadChildren: './dashboard/dashboard.module#DashboardModule', 
-        canActivate: [AuthGuard],
+        loadChildren: './dashboard/dashboard.module#DashboardModule',
       }, 
       {
         path: 'about-me',
@@ -28,7 +26,7 @@ const routes: Routes = [
       }, 
       {
         path: 'skills',
-        component: ListSkillGroupComponent
+        loadChildren: './skill-groups/skill-groups.module#SkillGroupsModule'
       }, 
       {
         path: 'projects',

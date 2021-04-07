@@ -9,7 +9,8 @@ import { SkillGroupService } from 'src/app/services/skillgroup/skillgroup.servic
   templateUrl: './create-skill-group.component.html',
   styleUrls: ['./create-skill-group.component.scss']
 })
-export class CreateSkillGroupComponent implements OnInit, AfterViewInit {
+export class CreateSkillGroupComponent implements OnInit {
+
   @ViewChild('titleControl') titleControl: ElementRef;
 
   @Output() onCreated: EventEmitter<any> = new EventEmitter();

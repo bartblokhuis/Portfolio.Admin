@@ -69,4 +69,5 @@ export class EditSkillComponent implements OnInit {
       });
     })
   }
+
 }

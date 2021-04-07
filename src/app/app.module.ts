@@ -8,13 +8,6 @@ import { AppComponent } from './app.component';
 import { QuillModule } from 'ngx-quill';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { CreateSkillComponent } from './components/skills-groups/skills/create-skill/create-skill.component';
-import { EditSkillComponent } from './components/skills-groups/skills/edit-skill/edit-skill.component';
-import { DeleteSkillComponent } from './components/skills-groups/skills/delete-skill/delete-skill.component';
-import { DeleteSkillGroupComponent } from './components/skills-groups/delete-skill-group/delete-skill-group.component';
-import { ListSkillGroupComponent } from './components/skills-groups/list-skill-group/list-skill-group.component';
-import { CreateSkillGroupComponent } from './components/skills-groups/create-skill-group/create-skill-group.component';
-import { ListSkillComponent } from './components/skills-groups/skills/list-skill/list-skill.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ToastrModule } from 'ngx-toastr';
@@ -29,17 +22,11 @@ import { ComponentsModule } from './components/components.module';
 import { ProjectsModule } from './projects/projects.module'; 
 import { DashboardModule } from './dashboard/dashboard.module';
 import { UserModule } from './user/user.module';
+import { SkillGroupsModule } from './skill-groups/skill-groups.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CreateSkillComponent,
-    EditSkillComponent,
-    DeleteSkillComponent,
-    DeleteSkillGroupComponent,
-    ListSkillGroupComponent,
-    CreateSkillGroupComponent,
-    ListSkillComponent,
     AdminComponent,
     AuthComponent,
   ],
@@ -49,6 +36,7 @@ import { UserModule } from './user/user.module';
     MessagesModule,
     ProjectsModule,
     DashboardModule,
+    SkillGroupsModule,
     BrowserModule,
     SharedModule,
     AppRoutingModule,
