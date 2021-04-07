@@ -5,7 +5,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS }  from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { QuillModule } from 'ngx-quill';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DragDropModule } from '@angular/cdk/drag-drop';
@@ -29,11 +28,11 @@ import { AboutMeModule } from './about-me/about-me.module';
 import { MessagesModule } from './messages/messages.module';
 import { ComponentsModule } from './components/components.module';
 import { ProjectsModule } from './projects/projects.module'; 
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
     CreateSkillComponent,
     EditSkillComponent,
     DeleteSkillComponent,
@@ -49,6 +48,7 @@ import { ProjectsModule } from './projects/projects.module';
     AboutMeModule,
     MessagesModule,
     ProjectsModule,
+    DashboardModule,
     BrowserModule,
     SharedModule,
     AppRoutingModule,
