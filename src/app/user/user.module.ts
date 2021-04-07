@@ -5,12 +5,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { UserRoutes } from './user.routes';
 import { LoginComponent } from './login/login.component';
-import { UpdateComponent } from './update/update.component';
+import { EditComponent } from './edit/edit.component';
 
 
 
 @NgModule({
-  declarations: [LoginComponent, UpdateComponent],
+  declarations: [LoginComponent, EditComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(UserRoutes),
