@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Project } from '../../../data/project';
+import { Project } from '../../data/project';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ProjectService } from 'src/app/services/projects/project.service';
 import { ToastrService } from 'ngx-toastr';
@@ -26,4 +26,5 @@ export class DeleteProjectComponent {
       this.toastr.success("Removed " + this.project.title);
     });
   }
+
 }

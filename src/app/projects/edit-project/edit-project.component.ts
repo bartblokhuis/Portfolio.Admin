@@ -9,10 +9,10 @@ import { Skill } from 'src/app/data/Skill';
 import { ProjectService } from 'src/app/services/projects/project.service';
 import { SkillService } from 'src/app/services/skills/skill.service';
 
-
 @Component({
   selector: 'app-edit-project',
   templateUrl: './edit-project.component.html',
+  styleUrls: ['./edit-project.component.scss']
 })
 export class EditProjectComponent implements OnInit {
 

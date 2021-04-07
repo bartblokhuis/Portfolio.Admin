@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Project } from 'src/app/data/project';
-import { ProjectService } from '../../../services/projects/project.service';
+import { ProjectService } from '../../services/projects/project.service';
 import { CreateProjectComponent } from '../create-project/create-project.component';
 import { DeleteProjectComponent } from '../delete-project/delete-project.component';
 import { EditProjectComponent } from '../edit-project/edit-project.component';

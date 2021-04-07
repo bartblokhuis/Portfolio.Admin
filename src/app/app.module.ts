@@ -8,9 +8,6 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { QuillModule } from 'ngx-quill';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { CreateProjectComponent } from './components/projects/create-project/create-project.component';
-import { EditProjectComponent } from './components/projects/edit-project/edit-project.component';
-import { DeleteProjectComponent } from './components/projects/delete-project/delete-project.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CreateSkillComponent } from './components/skills-groups/skills/create-skill/create-skill.component';
 import { EditSkillComponent } from './components/skills-groups/skills/edit-skill/edit-skill.component';
@@ -19,7 +16,6 @@ import { DeleteSkillGroupComponent } from './components/skills-groups/delete-ski
 import { ListSkillGroupComponent } from './components/skills-groups/list-skill-group/list-skill-group.component';
 import { CreateSkillGroupComponent } from './components/skills-groups/create-skill-group/create-skill-group.component';
 import { ListSkillComponent } from './components/skills-groups/skills/list-skill/list-skill.component';
-import { ListProjectComponent } from './components/projects/list-project/list-project.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ToastrModule } from 'ngx-toastr';
@@ -32,14 +28,12 @@ import { SharedModule } from './components/shared/shared.module';
 import { AboutMeModule } from './about-me/about-me.module';
 import { MessagesModule } from './messages/messages.module';
 import { ComponentsModule } from './components/components.module';
+import { ProjectsModule } from './projects/projects.module'; 
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    CreateProjectComponent,
-    EditProjectComponent,
-    DeleteProjectComponent,
     CreateSkillComponent,
     EditSkillComponent,
     DeleteSkillComponent,
@@ -47,7 +41,6 @@ import { ComponentsModule } from './components/components.module';
     ListSkillGroupComponent,
     CreateSkillGroupComponent,
     ListSkillComponent,
-    ListProjectComponent,
     LoginComponent,
     AdminComponent,
     AuthComponent,
@@ -55,6 +48,7 @@ import { ComponentsModule } from './components/components.module';
   imports: [
     AboutMeModule,
     MessagesModule,
+    ProjectsModule,
     BrowserModule,
     SharedModule,
     AppRoutingModule,
