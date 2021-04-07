@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { environment } from '../../../environments/environment';
-import { User } from '../../data/User';
+import { User, UserDetails } from '../../data/User';
 
 @Injectable({
   providedIn: 'root'
@@ -36,5 +36,9 @@ export class AuthenticationService {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
+  }
+
+  getUserDetails() :Observable<UserDetails> {
+    return this.http.get<UserDetails>(`${environment.baseApiUrl}user/details`);
   }
 }

@@ -6,3 +6,8 @@ export class User {
     lastName: string;
     token?: string;
 }
+
+export class UserDetails {
+    username: string;
+    email: string;
+}
