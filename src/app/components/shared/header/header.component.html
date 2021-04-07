@@ -16,10 +16,22 @@
         </a>
       </li>
 
-      <li class="nav-item" (click)="logout();">
-        <a class="nav-link" href="#">
-          <i class="fas fa-power-off"></i>
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="fas fa-user"></i>
         </a>
+        
+        <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+
+          <a [routerLink]="'/user/edit'" routerLinkActive="active" class="dropdown-item">
+            <i class="fas fa-cog mr-2"></i>
+             Edit settings
+          </a>
+          <a href="#" class="dropdown-item" (click)="logout();">
+            <i class="fas fa-power-off mr-2"></i>
+             Logout
+          </a>
+        </div>
       </li>
     </ul>
   </nav>
