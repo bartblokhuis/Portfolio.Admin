@@ -41,4 +41,8 @@ export class AuthenticationService {
   getUserDetails() :Observable<UserDetails> {
     return this.http.get<UserDetails>(`${environment.baseApiUrl}user/details`);
   }
+
+  updateUserDetails(username: string, email: string, password: string): Observable<UserDetails> {
+    return this.http.put<UserDetails>(`${environment.baseApiUrl}user/details`, {username, email, password})
+  }
 }

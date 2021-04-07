@@ -23,7 +23,8 @@ export class EditComponent implements OnInit {
 
     this.detailsForm = this.formBuilder.group({
       username: ['', Validators.required],
-      email: ['', Validators.required]
+      email: ['', Validators.required],
+      password: ['']
     });
 
     this.changePasswordForm = this.formBuilder.group({
@@ -35,6 +36,14 @@ export class EditComponent implements OnInit {
     this.authenticationService.getUserDetails().subscribe((details) => {
       this.detailsForm.controls.username.setValue(details.username);
       this.detailsForm.controls.email.setValue(details.email);
+    });
+  }
+
+  updateUserDetails(): void {
+    this.authenticationService
+    .updateUserDetails(this.detailsForm.controls.username.value, this.detailsForm.controls.email.value, this.detailsForm.controls.password.value)
+    .subscribe((result) => {
+
     });
   }
 
