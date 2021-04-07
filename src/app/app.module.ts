@@ -2,13 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS }  from "@angular/common/http";
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { QuillModule } from 'ngx-quill';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { DragDropModule } from '@angular/cdk/drag-drop';
-import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ToastrModule } from 'ngx-toastr';
 import { JwtInterceptor } from './helpers/JwtInterceptor';
@@ -41,13 +37,8 @@ import { SkillGroupsModule } from './skill-groups/skill-groups.module';
     SharedModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    QuillModule.forRoot(),
     NgbModule,
-    FormsModule,
-    ReactiveFormsModule,
-    DragDropModule,
     HttpClientModule,
-    NgMultiSelectDropDownModule,
     ComponentsModule,
     ToastrModule.forRoot()
   ],
