@@ -42,7 +42,14 @@ export class AuthenticationService {
     return this.http.get<UserDetails>(`${environment.baseApiUrl}user/details`);
   }
 
-  updateUserDetails(username: string, email: string, password: string): Observable<UserDetails> {
-    return this.http.put<UserDetails>(`${environment.baseApiUrl}user/details`, {username, email, password})
+  updateUserDetails(username: string, email: string, password: string) {
+    return this.http.put<any>(`${environment.baseApiUrl}user/details`, {username, email, password})
+    .pipe(map(user => {
+      // store user details and jwt token in local storage to keep user logged in between page refreshes
+      localStorage.removeItem('currentUser');
+      localStorage.setItem('currentUser', JSON.stringify(user));
+      this.currentUserSubject.next(user);
+      return user;
+  }));
   }
 }
