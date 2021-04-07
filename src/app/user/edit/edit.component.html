@@ -52,7 +52,7 @@
 
         <div class="col-lg-8">
   
-            <form [formGroup]="changePasswordForm">
+            <form [formGroup]="changePasswordForm" (ngSubmit)="changePassword()">
               <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Change password</h3>
@@ -66,7 +66,7 @@
       
                   <div class="form-group">
                     <label>New password</label>
-                    <input type="password" formControlName="newPassword" name="newPassword" class="form-control" />
+                    <input type="password" formControlName="password" name="password" class="form-control" />
                   </div>
 
                   <div class="form-group">

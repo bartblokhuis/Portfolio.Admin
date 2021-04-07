@@ -29,8 +29,8 @@ export class EditComponent implements OnInit {
 
     this.changePasswordForm = this.formBuilder.group({
       oldPassword: [''],
-      newPassword: [],
-      confirmNewPassword: []
+      password: [''],
+      confirmNewPassword: ['']
     });
 
     this.authenticationService.getUserDetails().subscribe((details) => {
@@ -45,6 +45,11 @@ export class EditComponent implements OnInit {
     .subscribe((result) => {
 
     });
+  }
+
+  changePassword(): void {
+    this.authenticationService.updatePassword(this.changePasswordForm.controls.password.value, this.changePasswordForm.controls.oldPassword.value)
+    .subscribe(() => "");
   }
 
 }
