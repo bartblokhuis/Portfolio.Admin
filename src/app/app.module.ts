@@ -18,7 +18,6 @@ import { ListSkillComponent } from './components/skills-groups/skills/list-skill
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ToastrModule } from 'ngx-toastr';
-import { LoginComponent } from './components/login/login.component';
 import { JwtInterceptor } from './helpers/JwtInterceptor';
 import { ErrorInterceptor } from './helpers/ErrorInterceptor';
 import { AdminComponent } from './layouts/admin/admin.component';
@@ -29,6 +28,7 @@ import { MessagesModule } from './messages/messages.module';
 import { ComponentsModule } from './components/components.module';
 import { ProjectsModule } from './projects/projects.module'; 
 import { DashboardModule } from './dashboard/dashboard.module';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [
@@ -40,11 +40,11 @@ import { DashboardModule } from './dashboard/dashboard.module';
     ListSkillGroupComponent,
     CreateSkillGroupComponent,
     ListSkillComponent,
-    LoginComponent,
     AdminComponent,
     AuthComponent,
   ],
   imports: [
+    UserModule,
     AboutMeModule,
     MessagesModule,
     ProjectsModule,

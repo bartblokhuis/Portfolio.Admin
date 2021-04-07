@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ListSkillGroupComponent } from './components/skills-groups/list-skill-group/list-skill-group.component';
-import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './helpers/AuthGuard';
 import { AdminComponent } from './layouts/admin/admin.component';
 import { AuthComponent } from './layouts/auth/auth.component';
@@ -46,7 +45,7 @@ const routes: Routes = [
     component: AuthComponent,
     children: [{
       path: 'login',
-      component: LoginComponent
+      loadChildren: './user/user.module#UserModule'
     }]
   }
 ];
