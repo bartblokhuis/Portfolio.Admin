@@ -8,7 +8,7 @@ import { AuthComponent } from './layouts/auth/auth.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/dashboard',
+    redirectTo: 'dashboard',
     pathMatch: 'full',
 },
   {
@@ -17,23 +17,24 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { 
-        path: 'dashboard', 
+        path: '', 
         loadChildren: './dashboard/dashboard.module#DashboardModule',
+        
       }, 
       {
-        path: 'about-me',
+        path: '',
         loadChildren: './about-me/about-me.module#AboutMeModule',
       }, 
       {
-        path: 'skills',
+        path: '',
         loadChildren: './skill-groups/skill-groups.module#SkillGroupsModule'
       }, 
       {
-        path: 'projects',
+        path: '',
         loadChildren: './projects/projects.module#ProjectsModule' 
       }, 
       {
-        path: 'messages',
+        path: '',
         loadChildren: './messages/messages.module#MessagesModule' 
       }
     ]
@@ -42,7 +43,7 @@ const routes: Routes = [
     path: '',
     component: AuthComponent,
     children: [{
-      path: 'login',
+      path: '',
       loadChildren: './user/user.module#UserModule'
     }]
   }

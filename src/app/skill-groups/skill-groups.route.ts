@@ -6,7 +6,6 @@ import { AuthGuard } from '../helpers/AuthGuard';
 
 export const SkillGroupRoutes: Routes = [{
     path: '',
-    component: AdminComponent,
     canActivate: [AuthGuard],
     children: [{
         path: 'skills',

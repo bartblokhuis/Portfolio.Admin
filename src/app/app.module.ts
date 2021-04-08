@@ -2,11 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS }  from "@angular/common/http";
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ToastrModule } from 'ngx-toastr';
+import { AppRoutingModule } from './app-routing.module';
 import { JwtInterceptor } from './helpers/JwtInterceptor';
 import { ErrorInterceptor } from './helpers/ErrorInterceptor';
 import { AdminComponent } from './layouts/admin/admin.component';
@@ -27,6 +27,8 @@ import { SkillGroupsModule } from './skill-groups/skill-groups.module';
     AuthComponent,
   ],
   imports: [
+    BrowserAnimationsModule,
+    AppRoutingModule,
     UserModule,
     AboutMeModule,
     MessagesModule,
@@ -35,8 +37,6 @@ import { SkillGroupsModule } from './skill-groups/skill-groups.module';
     SkillGroupsModule,
     BrowserModule,
     SharedModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
     NgbModule,
     HttpClientModule,
     ComponentsModule,
