@@ -63,4 +63,65 @@ export class ListSkillGroupComponent implements OnInit {
     }
   }
 
+  editSkillGroup(skillGroupId: number){
+    
+    this.hideSkillGroupLabel(skillGroupId);
+    this.showSkillGroupEditField(skillGroupId);
+    this.hideSkillGroupEditIcon(skillGroupId);
+    this.showSkillGroupSaveIcon(skillGroupId);
+
+  }
+
+  saveSkillGroup(skillGroup: SkillGroup): void {
+
+    skillGroup.title = this.document.getElementById(skillGroup.id + "_input").value;
+
+    this.skillGroupService.editSkillGroup(skillGroup).subscribe(() => {
+      this.showSkillGroupLabel(skillGroup.id);
+      this.hideSkillGroupEditField(skillGroup.id);
+      this.showSkillGroupEditIcon(skillGroup.id);
+      this.hideSkillGroupSaveIcon(skillGroup.id);
+    });
+  }
+
+  hideSkillGroupLabel(skillGroupId: number): void {
+    const labelEl = this.document.getElementById(skillGroupId + "_label");
+    labelEl.style.display = 'none';
+  }
+
+  showSkillGroupLabel(skillGroupId: number): void {
+    const labelEl = this.document.getElementById(skillGroupId + "_label");
+    labelEl.style.display = 'block';
+  }
+
+  hideSkillGroupEditField(skillGroupId: number): void {
+    const inputEl = this.document.getElementById(skillGroupId + "_input");
+    inputEl.style.display = 'none';
+  }
+
+  showSkillGroupEditField(skillGroupId: number): void {
+    const inputEl = this.document.getElementById(skillGroupId + "_input");
+    inputEl.style.display = 'block';
+  }
+
+  hideSkillGroupEditIcon(skillGroupId: number): void {
+    const inputEl = this.document.getElementById(skillGroupId + "_edit_button");
+    inputEl.style.display = 'none';
+  }
+
+  showSkillGroupEditIcon(skillGroupId: number): void {
+    const inputEl = this.document.getElementById(skillGroupId + "_edit_button");
+    inputEl.style.display = 'block';
+  }
+
+  hideSkillGroupSaveIcon(skillGroupId: number): void {
+    const inputEl = this.document.getElementById(skillGroupId + "_save_button");
+    inputEl.style.display = 'none';
+  }
+
+  showSkillGroupSaveIcon(skillGroupId: number): void {
+    const inputEl = this.document.getElementById(skillGroupId + "_save_button");
+    inputEl.style.display = 'block';
+  }
+
 }

@@ -21,9 +21,8 @@
             <div class="card-header">
               <div class="float-left">
                 <input type="text" [value]="skillGroup.title" [id]="skillGroup.id" style="display: none">
-                <h3 class="card-title" [id]="skillGroup.id + '_label'">
-                  {{skillGroup.title}}
-                </h3>
+                <h3 class="card-title" [id]="skillGroup.id + '_label'">{{ skillGroup.title }}</h3>
+                <input [id]="skillGroup.id + '_input'" type="text" [value]="skillGroup.title" class="form-control card-title" style="display: none;">
               </div>
               <div class="float-right">
                 <i class="fas fa-pen-alt" (click)="editSkillGroup(skillGroup.id)" [id]="skillGroup.id + '_edit_button'"></i>
