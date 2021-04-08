@@ -6,7 +6,6 @@ import { ListProjectComponent } from './list-project/list-project.component';
 
 export const ProjectRoutes: Routes = [{
     path: '',
-    component: AdminComponent,
     canActivate: [AuthGuard],
     children: [{
         path: 'projects',

@@ -6,9 +6,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 export const DashboardRoutes: Routes = [{
     path: '',
-    component: AdminComponent,
-    canActivate: [AuthGuard],
     children: [{
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full'
+    },{
         path: 'dashboard',
         component: DashboardComponent
     }]

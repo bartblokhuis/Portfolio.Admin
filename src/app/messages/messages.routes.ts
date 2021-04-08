@@ -6,7 +6,6 @@ import { ListMessagesComponent } from './list-messages/list-messages.component';
 
 export const MessageRoutes: Routes = [{
     path: '',
-    component: AdminComponent,
     canActivate: [AuthGuard],
     children: [{
         path: 'messages',

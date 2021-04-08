@@ -6,7 +6,6 @@ import { AuthGuard } from '../helpers/AuthGuard';
 
 export const AboutMeRoutes: Routes = [{
     path: '',
-    component: AdminComponent,
     canActivate: [AuthGuard],
     children: [{
         path: 'about-me',
