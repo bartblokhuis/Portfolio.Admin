@@ -19,6 +19,7 @@ import { ProjectsModule } from './projects/projects.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { UserModule } from './user/user.module';
 import { SkillGroupsModule } from './skill-groups/skill-groups.module';
+import { SettingsModule } from './settings/settings.module';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { SkillGroupsModule } from './skill-groups/skill-groups.module';
     ProjectsModule,
     DashboardModule,
     SkillGroupsModule,
+    SettingsModule,
     BrowserModule,
     SharedModule,
     NgbModule,
