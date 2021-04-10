@@ -28,6 +28,7 @@ export class SidebarComponent implements OnInit {
     { name: "Projects", path: "/projects", icon: "nav-icon fas fa-tasks" },
     { name: "Messages", path: "/messages", icon: "nav-icon fas fa-inbox", badge: { value: "New", style: "right badge badge-danger" } },
     { name: 'Settings', path: '', icon: 'nav-icon fas fa-cog', menuItems: [
+      { name: 'General settings', icon: "far fa-circle nav-icon", path: "/general-settings" },
       { name: 'Seo settings', icon: "far fa-circle nav-icon", path: "/seo-settings" },
       { name: 'Email settings', icon: "far fa-circle nav-icon", path: "/email-settings" },
     ]}
