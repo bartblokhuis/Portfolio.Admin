@@ -36,6 +36,10 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: './messages/messages.module#MessagesModule' 
+      }, 
+      {
+        path: '',
+        loadChildren: './settings/settings.module#SettingsModule' 
       }
     ]
   },
