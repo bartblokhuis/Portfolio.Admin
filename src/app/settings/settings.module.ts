@@ -5,9 +5,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SettingsRoutes } from './settings.routes';
 import { EmailSettingsComponent } from './email-settings/email-settings.component';
+import { SeoSettingsComponent } from './seo-settings/seo-settings.component';
 
 @NgModule({
-  declarations: [EmailSettingsComponent],
+  declarations: [EmailSettingsComponent, SeoSettingsComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(SettingsRoutes),

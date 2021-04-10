@@ -66,6 +66,7 @@ export class EmailSettingsComponent implements OnInit {
 
     this.emailSettingsService.saveEmailSettings(settings).subscribe(() => {
       this.toastrService.success("Saved email settings");
+      this.showSaveButton = false;
     });
   }
 

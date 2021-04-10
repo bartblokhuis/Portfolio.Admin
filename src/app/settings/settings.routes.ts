@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 
 import { EmailSettingsComponent } from './email-settings/email-settings.component';
 import { AuthGuard } from '../helpers/AuthGuard';
+import { SeoSettingsComponent } from './seo-settings/seo-settings.component';
 
 export const SettingsRoutes: Routes = [{
     path: '',
@@ -9,5 +10,8 @@ export const SettingsRoutes: Routes = [{
     children: [{
         path: 'email-settings',
         component: EmailSettingsComponent
+    }, {
+        path: 'seo-settings',
+        component: SeoSettingsComponent
     }]
 }];
