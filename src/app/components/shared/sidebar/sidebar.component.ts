@@ -30,6 +30,7 @@ export class SidebarComponent implements OnInit {
     { name: 'Settings', path: '', icon: 'nav-icon fas fa-cog', menuItems: [
       { name: 'Seo settings', icon: "far fa-circle nav-icon", path: "/seo-settings" },
       { name: 'Email settings', icon: "far fa-circle nav-icon", path: "/email-settings" },
+      { name: 'General settings', icon: "far fa-circle nav-icon", path: "/general-settings" },
     ]}
   ];
   
