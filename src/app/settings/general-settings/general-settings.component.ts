@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { GeneralSettings } from 'src/app/data/GeneralSettings';
 
-import { GeneralSettingsService } from '../../services/settings/general-settings.service';
+import { SettingserviceService } from '../../services/settings/settingservice.service';
 
 
 @Component({
@@ -28,13 +28,13 @@ export class GeneralSettingsComponent implements OnInit {
     showContactMeForm: new FormControl(''),
   });
 
-  constructor(private generalSettingsService: GeneralSettingsService, private toastrService: ToastrService) { }
+  constructor(private settingsService: SettingserviceService, private toastrService: ToastrService) { }
 
   get f() { return this.seoSettingsForm.controls; }
 
   ngOnInit(): void {
 
-    this.generalSettingsService.getSettings().subscribe((settings) => {
+    this.settingsService.get<GeneralSettings>("GeneralSettings").subscribe((settings) => {
       this.f.landingTitle.setValue(settings.landingTitle);
       this.f.landingDescription.setValue(settings.landingDescription);
       this.f.callToActionText.setValue(settings.callToActionText);
@@ -68,7 +68,7 @@ export class GeneralSettingsComponent implements OnInit {
       showContactMeForm: this.f.showContactMeForm.value ?? false,
     };
 
-    this.generalSettingsService.saveSettings(settings).subscribe(() => {
+    this.settingsService.save<GeneralSettings>(settings, "GeneralSettings").subscribe(() => {
       this.toastrService.success("Saved general settings");
       this.showSaveButton = false;
     });

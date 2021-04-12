@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { EmailSettings } from 'src/app/data/EmailSettings';
 
-import { EmailSettingsService } from '../../services/settings/email-settings.service';
+import { SettingserviceService } from '../../services/settings/settingservice.service';
 
 @Component({
   selector: 'app-email-settings',
@@ -26,14 +26,14 @@ export class EmailSettingsComponent implements OnInit {
     sendTestEmailTo: new FormControl(''),
   });
 
-  constructor(private emailSettingsService: EmailSettingsService, private toastrService: ToastrService) { }
+  constructor(private settngsService: SettingserviceService, private toastrService: ToastrService) { }
 
    // convenience getter for easy access to form fields
    get f() { return this.emailSettingsForm.controls; }
 
   ngOnInit(): void {
 
-    this.emailSettingsService.getEmailSettings().subscribe((settings) => {
+    this.settngsService.get<EmailSettings>("EmailSettings").subscribe((settings) => {
       this.f.email.setValue(settings.email);
       this.f.displayName.setValue(settings.displayName);
       this.f.host.setValue(settings.host);
@@ -64,7 +64,7 @@ export class EmailSettingsComponent implements OnInit {
       username: this.f.username.value ?? false
     };
 
-    this.emailSettingsService.saveEmailSettings(settings).subscribe(() => {
+    this.settngsService.save<EmailSettings>(settings, "EmailSettings").subscribe(() => {
       this.toastrService.success("Saved email settings");
       this.showSaveButton = false;
     });

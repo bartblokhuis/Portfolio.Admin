@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { SeoSettings } from 'src/app/data/SeoSettings';
 
-import { SeoSettingsService } from '../../services/settings/seo-settings.service';
+import { SettingserviceService } from '../../services/settings/settingservice.service';
 
 @Component({
   selector: 'app-seo-settings',
@@ -22,13 +22,13 @@ export class SeoSettingsComponent implements OnInit {
     useOpenGraphMetaTags: new FormControl(''),
   });
 
-  constructor(private seoSettingsService: SeoSettingsService, private toastrService: ToastrService) { }
+  constructor(private settingService: SettingserviceService, private toastrService: ToastrService) { }
 
   get f() { return this.seoSettingsForm.controls; }
 
   ngOnInit(): void {
 
-    this.seoSettingsService.getSeoSettings().subscribe((settings) => {
+    this.settingService.get<SeoSettings>("SeoSettings").subscribe((settings) => {
       this.f.title.setValue(settings.title);
       this.f.defaultMetaKeywords.setValue(settings.defaultMetaKeywords);
       this.f.defaultMetaDescription.setValue(settings.defaultMetaDescription);
@@ -52,7 +52,7 @@ export class SeoSettingsComponent implements OnInit {
       useTwitterMetaTags: this.f.useTwitterMetaTags.value ?? false
     };
 
-    this.seoSettingsService.saveSeoSettings(settings).subscribe(() => {
+    this.settingService.save<SeoSettings>(settings, "SeoSettings").subscribe(() => {
       this.toastrService.success("Saved seo settings");
       this.showSaveButton = false;
     });
