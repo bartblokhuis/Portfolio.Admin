@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { AboutMe } from '../../data/AboutMe';
 
 @Injectable({
@@ -8,15 +9,14 @@ import { AboutMe } from '../../data/AboutMe';
 })
 export class AboutMeService {
 
-  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string ) {
-    this.baseUrl += "AboutMe/"
+  constructor(private http: HttpClient) {
    }
 
    getAboutMe(): Observable<AboutMe> {
-    return this.http.get<AboutMe>(this.baseUrl);
+    return this.http.get<AboutMe>(`${environment.baseApiUrl}AboutMe`);
    }
 
    saveAboutMe(formData: any): Observable<AboutMe> {
-     return this.http.post<AboutMe>(this.baseUrl, formData);
+     return this.http.post<AboutMe>(`${environment.baseApiUrl}AboutMe`, formData);
    }
 }

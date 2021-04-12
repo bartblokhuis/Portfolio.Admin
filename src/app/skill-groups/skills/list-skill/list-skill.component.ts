@@ -6,6 +6,7 @@ import { CreateSkillComponent } from '../create-skill/create-skill.component';
 import { SkillService } from '../../../services/skills/skill.service';
 import { EditSkillComponent } from '../edit-skill/edit-skill.component';
 import { DeleteSkillComponent } from '../delete-skill/delete-skill.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-list-skill',
@@ -16,7 +17,9 @@ export class ListSkillComponent implements OnInit {
 
   @Input() skillGroup: SkillGroup;
 
-  constructor(private modalService: NgbModal, private skillService: SkillService, @Inject('BASE_URL') private baseUrl: string) { }
+  constructor(private modalService: NgbModal, private skillService: SkillService) { }
+
+  baseUrl = environment.baseApiUrl;
 
   ngOnInit(): void {
   }

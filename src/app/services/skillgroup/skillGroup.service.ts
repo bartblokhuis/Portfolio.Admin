@@ -1,30 +1,30 @@
 import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SkillGroup } from 'src/app/data/SkillGroup';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SkillGroupService {
 
-  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string ) {
-    this.baseUrl += "SkillGroup/"
+  constructor(private http: HttpClient) {
    }
 
    getSkillGroups(): Observable<SkillGroup[]> {
-    return this.http.get<SkillGroup[]>(this.baseUrl);
+    return this.http.get<SkillGroup[]>(`${environment.baseApiUrl}SkillGroup`);
   }
 
   createSkillGroup(skillGroup: SkillGroup): Observable<SkillGroup> {
-    return this.http.post<SkillGroup>(this.baseUrl, skillGroup);
+    return this.http.post<SkillGroup>(`${environment.baseApiUrl}SkillGroup`, skillGroup);
   }
 
   editSkillGroup(updateSkillGroup: SkillGroup): Observable<SkillGroup> {
-    return this.http.put<SkillGroup>(this.baseUrl, updateSkillGroup);
+    return this.http.put<SkillGroup>(`${environment.baseApiUrl}SkillGroup`, updateSkillGroup);
   }
 
   deleteSkillGroup(skillGroupId: number): Observable<Object> {
-    return this.http.delete(this.baseUrl + "?id=" + skillGroupId);
+    return this.http.delete(`${environment.baseApiUrl}SkillGroup?id=${skillGroupId}`);
   }
 }

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { SeoSettings } from '../../data/SeoSettings';
 
 @Injectable({
@@ -8,15 +9,14 @@ import { SeoSettings } from '../../data/SeoSettings';
 })
 export class SeoSettingsService {
 
-  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string ) {
-    this.baseUrl += "SeoSettings/"
+  constructor(private http: HttpClient) {
    }
 
    getSeoSettings(): Observable<SeoSettings> {
-    return this.http.get<SeoSettings>(this.baseUrl);
+    return this.http.get<SeoSettings>(`${environment.baseApiUrl}SeoSettings`);
    }
 
    saveSeoSettings(formData: any): Observable<SeoSettings> {
-     return this.http.post<SeoSettings>(this.baseUrl, formData);
+     return this.http.post<SeoSettings>(`${environment.baseApiUrl}SeoSettings`, formData);
    }
   }

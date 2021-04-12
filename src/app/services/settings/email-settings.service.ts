@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { EmailSettings } from '../../data/EmailSettings';
 
 @Injectable({
@@ -8,15 +9,14 @@ import { EmailSettings } from '../../data/EmailSettings';
 })
 export class EmailSettingsService {
 
-  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string ) {
-    this.baseUrl += "EmailSettings/"
+  constructor(private http: HttpClient) {
    }
 
    getEmailSettings(): Observable<EmailSettings> {
-    return this.http.get<EmailSettings>(this.baseUrl);
+    return this.http.get<EmailSettings>(`${environment.baseApiUrl}EmailSettings`);
    }
 
    saveEmailSettings(formData: any): Observable<EmailSettings> {
-     return this.http.post<EmailSettings>(this.baseUrl, formData);
+     return this.http.post<EmailSettings>(`${environment.baseApiUrl}EmailSettings`, formData);
    }
 }
